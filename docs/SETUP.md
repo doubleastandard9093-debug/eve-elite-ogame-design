@@ -60,3 +60,6 @@ Migrations run automatically on startup.
 1. Create a product in the Epic Developer Portal.
 2. Create a client policy and a client.
 3. Put the IDs in Project Settings → Online Subsystem EOS (artifact settings). Don't commit secrets: use `Config/Windows/` or a local ini override that git ignores.
+
+## M1 testing
+See [M1-TESTING.md](M1-TESTING.md) for the test map, two-client PIE setup, controls, and checklist.
