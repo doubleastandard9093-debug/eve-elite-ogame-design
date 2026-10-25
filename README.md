@@ -7,6 +7,7 @@ A UE5 space sandbox where you **fly your own ship in the cockpit**, trade and fi
 2. **One galaxy, real stakes.** A single shard. Almost everything is player-built, and ships you lose stay lost.
 3. **Your empire never sleeps.** Colonies, research, and fleets run on real-time timers.
 4. **Groups shape the map.** Syndicates claim systems, run logistics, and go to war.
+5. **Your crew, your story.** Officers crew your stations, companions have arcs, and your choices are remembered.
 
 ## How the inspirations map in
 | Inspiration | What we borrow (as mechanics, not content) |
@@ -14,6 +15,8 @@ A UE5 space sandbox where you **fly your own ship in the cockpit**, trade and fi
 | Elite Dangerous | Cockpit flight, exploration scanning, trade and bounty loops, supercruise-style travel |
 | EVE Online | Single-shard economy, industry chains, corporations, sovereignty, full-loot risk |
 | OGame | Colonies, resource mines, build queues, research tree, timed fleet missions, raids |
+| Star Trek Online | Bridge-officer stations, ship consoles, live power levels, four shield facings, away missions |
+| Star Wars: The Old Republic | Origin story arcs, companions with affinity, choices with consequences, instanced story and ground layer |
 
 All names, lore, and assets are original.
 
@@ -21,6 +24,7 @@ All names, lore, and assets are original.
 Built in **Unreal Engine 5** (C++ plus Blueprints) on dedicated servers, backed by a persistent backend service. Colony management is an **in-game UI layer** (Holo-Command), not a separate client.
 
 ## Docs
+0. [Inspiration Analysis](docs/00-inspiration-analysis.md)
 1. [Core Loop](docs/01-core-loop.md)
 2. [Flight & Combat](docs/02-flight-and-combat.md)
 3. [Economy & Industry](docs/03-economy-and-industry.md)
@@ -30,3 +34,5 @@ Built in **Unreal Engine 5** (C++ plus Blueprints) on dedicated servers, backed 
 7. [Progression & Risk](docs/07-progression-and-risk.md)
 8. [Tech Architecture (UE5)](docs/08-tech-architecture.md)
 9. [MVP Roadmap](docs/09-mvp-roadmap.md)
+10. [Crew & Story](docs/10-crew-and-story.md)
+11. [Ground & Boarding](docs/11-ground-and-boarding.md)
