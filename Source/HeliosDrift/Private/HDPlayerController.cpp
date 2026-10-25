@@ -15,7 +15,7 @@ namespace
 		return A;
 	}
 
-	void Map(UInputMappingContext* Ctx, UInputAction* Action, const FKey& Key, float Scale = 1.f, bool bDeadZone = false)
+	void MapKeyTo(UInputMappingContext* Ctx, UInputAction* Action, const FKey& Key, float Scale = 1.f, bool bDeadZone = false)
 	{
 		FEnhancedActionKeyMapping& M = Ctx->MapKey(Action, Key);
 		if (bDeadZone)
@@ -76,36 +76,36 @@ void AHDPlayerController::BuildFlightInput()
 	Flight.RecenterVR    = MakeAction(this, TEXT("IA_RecenterVR"), T::Boolean);
 
 	// Keyboard + mouse
-	Map(C, Flight.Thrust, EKeys::W);            Map(C, Flight.Thrust, EKeys::S, -1.f);
-	Map(C, Flight.Strafe, EKeys::D);            Map(C, Flight.Strafe, EKeys::A, -1.f);
-	Map(C, Flight.Vertical, EKeys::R);          Map(C, Flight.Vertical, EKeys::F, -1.f);
-	Map(C, Flight.Roll, EKeys::E);              Map(C, Flight.Roll, EKeys::Q, -1.f);
-	Map(C, Flight.Pitch, EKeys::MouseY, 0.1f);
-	Map(C, Flight.Yaw, EKeys::MouseX, 0.1f);
-	Map(C, Flight.Pitch, EKeys::Up);            Map(C, Flight.Pitch, EKeys::Down, -1.f);
-	Map(C, Flight.Yaw, EKeys::Right);           Map(C, Flight.Yaw, EKeys::Left, -1.f);
-	Map(C, Flight.Fire, EKeys::LeftMouseButton); Map(C, Flight.Fire, EKeys::SpaceBar);
-	Map(C, Flight.ToggleFA, EKeys::Z);
-	Map(C, Flight.Slipstream, EKeys::J);
-	Map(C, Flight.PowerBalanced, EKeys::One);
-	Map(C, Flight.PowerAttack, EKeys::Two);
-	Map(C, Flight.PowerTank, EKeys::Three);
-	Map(C, Flight.PowerRun, EKeys::Four);
-	Map(C, Flight.EqualizeShields, EKeys::X);
-	Map(C, Flight.RecenterVR, EKeys::Home);
+	MapKeyTo(C, Flight.Thrust, EKeys::W);            MapKeyTo(C, Flight.Thrust, EKeys::S, -1.f);
+	MapKeyTo(C, Flight.Strafe, EKeys::D);            MapKeyTo(C, Flight.Strafe, EKeys::A, -1.f);
+	MapKeyTo(C, Flight.Vertical, EKeys::R);          MapKeyTo(C, Flight.Vertical, EKeys::F, -1.f);
+	MapKeyTo(C, Flight.Roll, EKeys::E);              MapKeyTo(C, Flight.Roll, EKeys::Q, -1.f);
+	MapKeyTo(C, Flight.Pitch, EKeys::MouseY, 0.1f);
+	MapKeyTo(C, Flight.Yaw, EKeys::MouseX, 0.1f);
+	MapKeyTo(C, Flight.Pitch, EKeys::Up);            MapKeyTo(C, Flight.Pitch, EKeys::Down, -1.f);
+	MapKeyTo(C, Flight.Yaw, EKeys::Right);           MapKeyTo(C, Flight.Yaw, EKeys::Left, -1.f);
+	MapKeyTo(C, Flight.Fire, EKeys::LeftMouseButton); MapKeyTo(C, Flight.Fire, EKeys::SpaceBar);
+	MapKeyTo(C, Flight.ToggleFA, EKeys::Z);
+	MapKeyTo(C, Flight.Slipstream, EKeys::J);
+	MapKeyTo(C, Flight.PowerBalanced, EKeys::One);
+	MapKeyTo(C, Flight.PowerAttack, EKeys::Two);
+	MapKeyTo(C, Flight.PowerTank, EKeys::Three);
+	MapKeyTo(C, Flight.PowerRun, EKeys::Four);
+	MapKeyTo(C, Flight.EqualizeShields, EKeys::X);
+	MapKeyTo(C, Flight.RecenterVR, EKeys::Home);
 
 	// Gamepad (XInput; also most HOTAS via Steam Input / XInput wrappers)
-	Map(C, Flight.Thrust, EKeys::Gamepad_LeftY, 1.f, true);
-	Map(C, Flight.Strafe, EKeys::Gamepad_LeftX, 1.f, true);
-	Map(C, Flight.Pitch, EKeys::Gamepad_RightY, 1.f, true);
-	Map(C, Flight.Yaw, EKeys::Gamepad_RightX, 1.f, true);
-	Map(C, Flight.Roll, EKeys::Gamepad_RightShoulder); Map(C, Flight.Roll, EKeys::Gamepad_LeftShoulder, -1.f);
-	Map(C, Flight.Vertical, EKeys::Gamepad_DPad_Up);   Map(C, Flight.Vertical, EKeys::Gamepad_DPad_Down, -1.f);
-	Map(C, Flight.Fire, EKeys::Gamepad_RightTrigger);
-	Map(C, Flight.ToggleFA, EKeys::Gamepad_LeftThumbstick);
-	Map(C, Flight.Slipstream, EKeys::Gamepad_FaceButton_Top);
-	Map(C, Flight.EqualizeShields, EKeys::Gamepad_FaceButton_Right);
-	Map(C, Flight.PowerBalanced, EKeys::Gamepad_DPad_Left);
-	Map(C, Flight.PowerAttack, EKeys::Gamepad_DPad_Right);
-	Map(C, Flight.RecenterVR, EKeys::Gamepad_Special_Left);
+	MapKeyTo(C, Flight.Thrust, EKeys::Gamepad_LeftY, 1.f, true);
+	MapKeyTo(C, Flight.Strafe, EKeys::Gamepad_LeftX, 1.f, true);
+	MapKeyTo(C, Flight.Pitch, EKeys::Gamepad_RightY, 1.f, true);
+	MapKeyTo(C, Flight.Yaw, EKeys::Gamepad_RightX, 1.f, true);
+	MapKeyTo(C, Flight.Roll, EKeys::Gamepad_RightShoulder); MapKeyTo(C, Flight.Roll, EKeys::Gamepad_LeftShoulder, -1.f);
+	MapKeyTo(C, Flight.Vertical, EKeys::Gamepad_DPad_Up);   MapKeyTo(C, Flight.Vertical, EKeys::Gamepad_DPad_Down, -1.f);
+	MapKeyTo(C, Flight.Fire, EKeys::Gamepad_RightTrigger);
+	MapKeyTo(C, Flight.ToggleFA, EKeys::Gamepad_LeftThumbstick);
+	MapKeyTo(C, Flight.Slipstream, EKeys::Gamepad_FaceButton_Top);
+	MapKeyTo(C, Flight.EqualizeShields, EKeys::Gamepad_FaceButton_Right);
+	MapKeyTo(C, Flight.PowerBalanced, EKeys::Gamepad_DPad_Left);
+	MapKeyTo(C, Flight.PowerAttack, EKeys::Gamepad_DPad_Right);
+	MapKeyTo(C, Flight.RecenterVR, EKeys::Gamepad_Special_Left);
 }
