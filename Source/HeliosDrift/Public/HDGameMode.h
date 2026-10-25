@@ -11,8 +11,11 @@ class HELIOSDRIFT_API AHDGameMode : public AGameModeBase
 public:
 	AHDGameMode();
 	virtual void PostLogin(APlayerController* NewPlayer) override;
+	virtual void Logout(AController* Exiting) override;
 
 	/** Zone/system id this server instance simulates (from -SystemId= cmdline). */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Zone")
 	FName SystemId = TEXT("sys-0001");
+
+	static FString PilotIdFor(const AController* C);
 };

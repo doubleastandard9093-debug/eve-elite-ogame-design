@@ -37,6 +37,7 @@ void UHDShipPowerComponent::TickComponent(float Dt, ELevelTick TT, FActorCompone
 
 UHDShieldComponent::UHDShieldComponent()
 {
+	PrimaryComponentTick.bCanEverTick = true;
 	SetIsReplicatedByDefault(true);
 	Facings.Init(MaxPerFacing, NumFace);
 }
@@ -67,4 +68,28 @@ void UHDShieldComponent::ServerEqualize_Implementation()
 	float Sum = 0.f;
 	for (float V : Facings) Sum += V;
 	for (float& V : Facings) V = Sum / NumFace;
+}
+
+void UHDShieldComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	if (GetOwner() && GetOwner()->HasAuthority()) { Refill(); }
+}
+
+void UHDShieldComponent::Refill()
+{
+	Facings.Init(MaxPerFacing, NumFace);
+}
+
+void UHDShieldComponent::TickComponent(float Dt, ELevelTick TT, FActorComponentTickFunction* F)
+{
+	Super::TickComponent(Dt, TT, F);
+	AActor* Owner = GetOwner();
+	if (!Owner || !Owner->HasAuthority()) return;
+	float Scale = 1.f;
+	if (const UHDShipPowerComponent* Power = Owner->FindComponentByClass<UHDShipPowerComponent>())
+	{
+		Scale = 0.5f + Power->GetPower(EHDSubsystem::Shields) / 100.f;
+	}
+	for (float& V : Facings) { V = FMath::Min(MaxPerFacing, V + RegenPerSecond * Scale * Dt); }
 }
