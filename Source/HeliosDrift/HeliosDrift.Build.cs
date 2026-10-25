@@ -8,6 +8,6 @@ public class HeliosDrift : ModuleRules
 		PublicDependencyModuleNames.AddRange(new string[] {
 			"Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "NetCore", "HTTP", "Json", "JsonUtilities", "HeadMountedDisplay"
 		});
-		PrivateDependencyModuleNames.AddRange(new string[] { "OnlineSubsystem", "OnlineSubsystemUtils" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "OnlineSubsystem", "OnlineSubsystemUtils", "XRBase" });
 	}
 }

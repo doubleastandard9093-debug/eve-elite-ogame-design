@@ -3,7 +3,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Net/UnrealNetwork.h"
 #include "Camera/CameraComponent.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
+#include "HeadMountedDisplayFunctionLibrary.h" // XRBase plugin (moved from HeadMountedDisplay in UE 5.3+)
 
 AHDShipPawn::AHDShipPawn()
 {
@@ -35,20 +35,15 @@ void AHDShipPawn::RecenterVR()
 	}
 }
 
-void AHDShipPawn::PossessedBy(AController* NewController)
-{
-	Super::PossessedBy(NewController);
-}
-
 void AHDShipPawn::NotifyControllerChanged()
 {
 	Super::NotifyControllerChanged();
 	if (IsLocallyControlled()) { RecenterVR(); }
 }
 
-void AHDShipPawn::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out) const
+void AHDShipPawn::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
-	Super::GetLifetimeReplicatedProps(Out);
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(AHDShipPawn, HullHP);
 }
 

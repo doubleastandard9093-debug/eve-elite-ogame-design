@@ -32,7 +32,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "VR") void RecenterVR();
 	UFUNCTION(BlueprintPure, Category = "VR") static bool IsVRActive();
 
-	virtual void PossessedBy(AController* NewController) override;
 	virtual void NotifyControllerChanged() override;
 
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;

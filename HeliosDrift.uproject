@@ -41,6 +41,10 @@
 		{
 			"Name": "OpenXRHandTracking",
 			"Enabled": true
+		},
+		{
+			"Name": "XRBase",
+			"Enabled": true
 		}
 	]
 }

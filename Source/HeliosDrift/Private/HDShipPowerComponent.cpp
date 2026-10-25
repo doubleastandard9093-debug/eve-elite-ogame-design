@@ -13,9 +13,9 @@ UHDShipPowerComponent::UHDShipPowerComponent()
 	Target.Init(50.f, NumSub);
 }
 
-void UHDShipPowerComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out) const
+void UHDShipPowerComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
-	Super::GetLifetimeReplicatedProps(Out);
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UHDShipPowerComponent, Current);
 }
 
@@ -41,9 +41,9 @@ UHDShieldComponent::UHDShieldComponent()
 	Facings.Init(MaxPerFacing, NumFace);
 }
 
-void UHDShieldComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out) const
+void UHDShieldComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
-	Super::GetLifetimeReplicatedProps(Out);
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 	DOREPLIFETIME(UHDShieldComponent, Facings);
 }
 
