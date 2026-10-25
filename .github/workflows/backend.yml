@@ -1,0 +1,18 @@
+name: backend
+on:
+  push: { paths: ["backend/**", ".github/workflows/backend.yml"] }
+  pull_request: { paths: ["backend/**"] }
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: backend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: { go-version-file: backend/go.mod }
+      - name: gofmt
+        run: test -z "$(gofmt -l .)"
+      - run: go vet ./...
+      - run: go test -race ./...
+      - run: go build ./cmd/server
+# Note: the UE5 C++ project is NOT built in CI (needs Unreal Engine on a Windows/Linux build agent). Planned: self-hosted runner or Horde later.
