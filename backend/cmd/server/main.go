@@ -9,6 +9,7 @@ import (
 
 	"github.com/doubleastandard9093-debug/eve-elite-ogame-design/backend/internal/api"
 	"github.com/doubleastandard9093-debug/eve-elite-ogame-design/backend/internal/db"
+	"github.com/doubleastandard9093-debug/eve-elite-ogame-design/backend/internal/ships"
 )
 
 func main() {
@@ -31,7 +32,7 @@ func main() {
 	}
 	addr := ":" + getenv("PORT", "8080")
 	log.Printf("helios backend listening on %s", addr)
-	log.Fatal(http.ListenAndServe(addr, api.NewRouter(d, "0.1.0")))
+	log.Fatal(http.ListenAndServe(addr, api.NewRouter(api.Config{DB: d, Ships: ships.PGStore{DB: d}, Version: "0.2.0", ServerKey: os.Getenv("SERVER_KEY")})))
 }
 
 func getenv(k, def string) string {
