@@ -36,6 +36,15 @@ In the Play dropdown, set Number of Players to 2 and Net Mode to **Play As Clien
 ## 5. Dedicated server build (later in M0)
 The `HeliosDriftServer` target needs a **source-built engine**, because the Launcher engine cannot build Server targets. Clone Unreal Engine from GitHub (it needs Epic account linking), then build it and package with `-server`. Until then, test in the editor using Play As Client.
 
+## 5b. VR testing with Meta Quest Link / Air Link
+1. Install the **Meta Quest Link** app on the PC (meta.com/quest/setup) and sign in.
+2. In the Link app, go to **Settings → General** and turn on **Unknown Sources**. Then set **OpenXR Runtime → Set Meta Quest Link as active**.
+3. Connect the headset with a USB-C cable (Link), or enable **Air Link** in both the Link app and the headset. Wi-Fi 6 or 6E is recommended.
+4. In the headset, start Link. You'll land in the Link home environment.
+5. In the editor, the OpenXR plugin is already enabled in the project. Open the Play dropdown and choose **VR Preview**. It's greyed out if no OpenXR runtime or headset is detected.
+6. Sit in your seat and press the recenter binding to call `RecenterVR`. Recentering also runs automatically when you take control of the ship.
+7. If performance is poor, run `stat unit` in the console. The target is 11 ms or less at 90 Hz. Lower the Link render resolution in the Link app's device graphics settings.
+
 ## 6. Backend
 ```powershell
 cd backend
