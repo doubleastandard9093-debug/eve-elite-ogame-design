@@ -4,12 +4,43 @@
 	"Category": "",
 	"Description": "HELIOS DRIFT",
 	"Modules": [
-		{ "Name": "HeliosDrift", "Type": "Runtime", "LoadingPhase": "Default", "AdditionalDependencies": ["Engine", "EnhancedInput"] }
+		{
+			"Name": "HeliosDrift",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"EnhancedInput"
+			]
+		}
 	],
 	"Plugins": [
-		{ "Name": "EnhancedInput", "Enabled": true },
-		{ "Name": "OnlineSubsystemEOS", "Enabled": true },
-		{ "Name": "OnlineSubsystemUtils", "Enabled": true },
-		{ "Name": "ModelingToolsEditorMode", "Enabled": true, "TargetAllowList": ["Editor"] }
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemEOS",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemUtils",
+			"Enabled": true
+		},
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "OpenXR",
+			"Enabled": true
+		},
+		{
+			"Name": "OpenXRHandTracking",
+			"Enabled": true
+		}
 	]
 }

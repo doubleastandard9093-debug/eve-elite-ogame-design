@@ -2,6 +2,8 @@
 #include "HDShipPowerComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Camera/CameraComponent.h"
+#include "HeadMountedDisplayFunctionLibrary.h"
 
 AHDShipPawn::AHDShipPawn()
 {
@@ -11,6 +13,37 @@ AHDShipPawn::AHDShipPawn()
 	RootComponent = Hull;
 	Power = CreateDefaultSubobject<UHDShipPowerComponent>(TEXT("Power"));
 	Shields = CreateDefaultSubobject<UHDShieldComponent>(TEXT("Shields"));
+
+	CockpitRoot = CreateDefaultSubobject<USceneComponent>(TEXT("CockpitRoot"));
+	CockpitRoot->SetupAttachment(Hull);
+	CockpitRoot->SetRelativeLocation(FVector(150.f, 0.f, 60.f)); // tune per hull in BP
+	CockpitCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("CockpitCamera"));
+	CockpitCamera->SetupAttachment(CockpitRoot);
+	CockpitCamera->bLockToHmd = true; // ignored when no HMD is active
+}
+
+bool AHDShipPawn::IsVRActive()
+{
+	return UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled();
+}
+
+void AHDShipPawn::RecenterVR()
+{
+	if (IsVRActive())
+	{
+		UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition(0.f, EOrientPositionSelector::OrientationAndPosition);
+	}
+}
+
+void AHDShipPawn::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+}
+
+void AHDShipPawn::NotifyControllerChanged()
+{
+	Super::NotifyControllerChanged();
+	if (IsLocallyControlled()) { RecenterVR(); }
 }
 
 void AHDShipPawn::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out) const
