@@ -6,7 +6,7 @@ public class HeliosDrift : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		PublicDependencyModuleNames.AddRange(new string[] {
-			"Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "NetCore", "HTTP", "Json", "JsonUtilities", "HeadMountedDisplay"
+			"Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "NetCore", "CoreOnline", "HTTP", "Json", "JsonUtilities", "HeadMountedDisplay"
 		});
 		PrivateDependencyModuleNames.AddRange(new string[] { "OnlineSubsystem", "OnlineSubsystemUtils", "XRBase" });
 	}
