@@ -8,6 +8,7 @@ A UE5 space sandbox where you **fly your own ship in the cockpit**, trade and fi
 3. **Your empire never sleeps.** Colonies, research, and fleets run on real-time timers.
 4. **Groups shape the map.** Syndicates claim systems, run logistics, and go to war.
 5. **Your crew, your story.** Officers crew your stations, companions have arcs, and your choices are remembered.
+6. **Sit in the cockpit.** Optional seated PC VR (Quest Link/Air Link via OpenXR) with diegetic cockpit UI.
 
 ## How the inspirations map in
 | Inspiration | What we borrow (as mechanics, not content) |
@@ -36,3 +37,4 @@ Built in **Unreal Engine 5** (C++ plus Blueprints) on dedicated servers, backed 
 9. [MVP Roadmap](docs/09-mvp-roadmap.md)
 10. [Crew & Story](docs/10-crew-and-story.md)
 11. [Ground & Boarding](docs/11-ground-and-boarding.md)
+12. [VR](docs/12-vr.md)

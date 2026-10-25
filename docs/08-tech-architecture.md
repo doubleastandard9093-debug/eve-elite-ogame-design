@@ -36,3 +36,9 @@ UE servers own what happens in real time in space. The backend owns everything t
 - Unreal Horde or GitHub Actions + BuildGraph for CI. Builds are cooked per platform.
 - Dedicated servers are hosted with Agones on Kubernetes, or GameLift.
 - Telemetry: OpenTelemetry for services, Unreal Insights for profiling.
+
+## VR
+- **OpenXR** plugin (plus OpenXRHandTracking) and the HeadMountedDisplay module. Instanced stereo is on.
+- `AHDShipPawn` has a cockpit camera locked to the HMD and `RecenterVR()`. The flat-screen path is unchanged.
+- Cockpit HUD and Holo-Command are built as UMG 3D widget components so the same UI works in VR and on flat screens. Common UI handles focus.
+- PC VR only, via Quest Link or Air Link. No Android/Quest standalone target. See doc 12.

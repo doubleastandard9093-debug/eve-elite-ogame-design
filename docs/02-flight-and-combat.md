@@ -21,3 +21,6 @@
 ## Crew abilities
 - Station officers grant abilities (doc 10) on a hotbar. They draw Auxiliary power and share cooldown groups with modules. Wingmate and AI escort ships use their crew too.
 - **Boarding:** disable a target's drives, then use the Ops ability Boarding Party to start an instanced ground fight (doc 11).
+
+## VR cockpit
+Seated VR is a first-class way to fly (doc 12). Motion controllers grab a virtual stick and throttle, or you can use HOTAS or a gamepad. Shield facings, power levels and crew abilities show on diegetic cockpit panels, and head-look aiming is available for turrets.
