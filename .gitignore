@@ -1,0 +1,18 @@
+# Unreal
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Build/
+.vs/
+*.sln
+*.VC.db
+*.opensdf
+*.sdf
+*.suo
+*.xcworkspace
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+# backend
+backend/bin/
+.env
