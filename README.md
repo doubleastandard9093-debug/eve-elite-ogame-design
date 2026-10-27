@@ -1,6 +1,6 @@
-# HELIOS DRIFT — Game Design (working title)
+# Nullpoint — Game Design
 
-A UE5 space sandbox where you **fly your own ship in the cockpit**, trade and fight in **one persistent shared galaxy with a player-run economy**, and grow a **planetary empire** whose mines, build queues, and fleet timers keep running while you're away.
+A UE5 **space western** sandbox (PVE-focused) where you work the frontier with sim flight, trade lanes, landable planets and a player-built economy. You **fly your own ship in the cockpit**, trade and fight in **one persistent shared galaxy with a player-run economy**, and grow a **planetary empire** whose mines, build queues, and fleet timers keep running while you're away.
 
 ## Pillars
 1. **Hands on the stick.** Every ship is flown in first person, with Newtonian-assisted flight.
@@ -16,6 +16,9 @@ A UE5 space sandbox where you **fly your own ship in the cockpit**, trade and fi
 | Elite Dangerous | Cockpit flight, exploration scanning, trade and bounty loops, supercruise-style travel |
 | EVE Online | Single-shard economy, industry chains, corporations, sovereignty, full-loot risk |
 | OGame | Colonies, resource mines, build queues, research tree, timed fleet missions, raids |
+| Firefly (TV) | Space-western tone, a small crew on a working ship, salvage and smuggling on the frontier |
+| No Man's Sky | Landable planets, surface building, onboard social space |
+| Freelancer | Trade lanes as in-system highways, mouse-and-keyboard flight |
 | Star Trek Online | Bridge-officer stations, ship consoles, live power levels, four shield facings, away missions |
 | Star Wars: The Old Republic | Origin story arcs, companions with affinity, choices with consequences, instanced story and ground layer |
 
@@ -38,3 +41,10 @@ Built in **Unreal Engine 5** (C++ plus Blueprints) on dedicated servers, backed 
 10. [Crew & Story](docs/10-crew-and-story.md)
 11. [Ground & Boarding](docs/11-ground-and-boarding.md)
 12. [VR](docs/12-vr.md)
+13. [Scale, Galaxy & Travel](docs/13-scale-galaxy-and-travel.md)
+14. [Ships: Supply, Modules & Interiors](docs/14-ships-supply-and-interiors.md)
+15. [Claim Defense, PVE & PVP (§7)](docs/15-claim-defense-and-pvp.md)
+16. [Mining & Salvage (§7A, §7B)](docs/16-mining-and-salvage.md)
+17. [Landing & Interiors (§7C)](docs/17-landing-and-interiors.md)
+18. [Antagonists (§7E)](docs/18-antagonists.md)
+19. [Building, Stations, Planets & Gas Giants (§7D)](docs/19-building-stations-and-planets.md)

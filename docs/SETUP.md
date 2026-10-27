@@ -1,5 +1,7 @@
 # Setup (Windows, UE 5.8)
 
+> **Naming note:** the game is now called **Nullpoint**. The Unreal code module, targets, `.uproject` and `HD` class prefix are still named `HeliosDrift` internally so existing compiled binaries keep working. They will be renamed later in a dedicated commit.
+
 ## 1. Prerequisites (you already have most)
 - **Unreal Engine 5.8** at `C:\Program Files\Epic Games\UE_5.8` (Epic Games Launcher).
 - **Visual Studio** (folder `18`). In the Visual Studio Installer, make sure these are ticked:
