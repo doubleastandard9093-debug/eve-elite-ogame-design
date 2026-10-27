@@ -5,3 +5,4 @@
 - **Colony incidents:** a raid or event on your colony can spawn a ground defense instance you can join yourself (optional; it auto-resolves if you skip it).
 - **Scope:** no seamless planetary landing in the MVP. The ground layer is instanced and reached from a docking or boarding transition.
 - **Tech:** runs as separate UE levels on short-lived dedicated servers launched by the Zone Director. Results are written to the backend.
+- **2026-10 update:** players also go on foot into **hulk interiors** (doc 16 §7B) and **planetoid interiors** entered from a landed ship (doc 17 §7C.5), and walk their own **ship interiors** (doc 14).

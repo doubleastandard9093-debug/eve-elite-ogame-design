@@ -1,9 +1,9 @@
 # 02 — Flight & Combat
-- **Flight model:** six degrees of freedom with flight assist (FA) on or off. Throttle, boost, and lateral thrusters. You divert power between three buses: Shields, Weapons, and Engines.
-- **Travel tiers:** normal space (combat), **Slipstream** (fast travel within a system that can be interrupted), and **Lattice Jumps** (gates between systems; capital ships can jump without gates).
-- **Hulls:** Skiff, Corvette, Frigate, Cruiser, Hauler, Miner, and Explorer. Capital ships are planned for after the MVP. Each hull has hardpoints, utility slots, and internal slots.
+- **Flight model:** simulation, not arcade (see below). Six degrees of freedom with flight assist (FA) on or off. Throttle, boost, and lateral thrusters. You divert power between three buses: Shields, Weapons, and Engines.
+- **Travel tiers:** see the full travel-speed ladder in doc 13 (Sub Space, Slipstream, instance jump lanes, trade lanes, gates/wormholes/anomalies, galactic gates).
+- **Hulls:** fighters up to capitals, plus a mining line. Supply tiers and visible modules are in doc 14. Capital ships are planned for after the MVP. Each hull has hardpoints, utility slots, and internal slots.
 - **Combat:** shots travel as projectiles, and some weapons fire hitscan beams. Ships have subsystems you can target (drives, power plant, cargo). Heat management matters.
-- **Interdiction:** a minigame that pulls a target out of Slipstream.
+- **Interdiction:** pulls ships out of a lane, only in claimed volumes or Null (doc 15).
 - **Fleets:** you can captain a ship while AI escorts and wingmates follow your commands. Large battles use the server load tactics described in doc 08.
 
 ## Power allocation
@@ -24,3 +24,16 @@
 
 ## VR cockpit
 Seated VR is a first-class way to fly (doc 12). Motion controllers grab a virtual stick and throttle, or you can use HOTAS or a gamepad. Shield facings, power levels and crew abilities show on diegetic cockpit panels, and head-look aiming is available for turrets.
+
+## Flight modes and the tick model (2026-10 update)
+Flight is simulation, not arcade, and works on mouse and keyboard, joystick and throttle, or controller. No click-to-move: you fly the ship. Cockpits are customizable.
+
+Four control modes:
+1. **Assisted:** flight assist on.
+2. **Decoupled:** flight assist off; full Newtonian drift.
+3. **Lane:** locked to a trade lane corridor.
+4. **Cruise:** high-speed in-system travel (Slipstream).
+
+The tick model is built on **mass, thrust, heat, signature and rotational inertia**.
+- **Mass changes in real time with cargo and fuel.** A hauler that dumps its load mid-fight becomes agile, so trading, fighting and escaping are one conversation.
+- Module loadout affects ship **stability** (doc 14).
