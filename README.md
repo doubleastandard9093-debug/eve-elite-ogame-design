@@ -48,3 +48,4 @@ Built in **Unreal Engine 5** (C++ plus Blueprints) on dedicated servers, backed 
 17. [Landing & Interiors (§7C)](docs/17-landing-and-interiors.md)
 18. [Antagonists (§7E)](docs/18-antagonists.md)
 19. [Building, Stations, Planets & Gas Giants (§7D)](docs/19-building-stations-and-planets.md)
+20. [Encounter Anomalies](docs/20-encounter-anomalies.md)

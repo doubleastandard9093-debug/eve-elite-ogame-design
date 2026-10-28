@@ -13,7 +13,7 @@ OpenXR on Quest Link, a cockpit camera locked to the HMD with recenter, a virtua
 Four control modes (assisted, decoupled, lane, cruise), the mass/thrust/heat/signature/inertia tick with live cargo and fuel mass, controller and HOTAS bindings, the autopilot order set, one NPC-owned trade lane, and visible module hardpoints on two hulls (doc 02, 13, 14).
 
 ## M2 — Economy Core (6–8 wks)
-Persistent inventory, the §7A mining deposit types (belts and ice first), a regional market order book, one refining and fabrication chain, bare NPC baseline hulls, ship loss and wrecks, and §7B salvage grades with Class 1 Solo hulk interiors (doc 16).
+Persistent inventory, the §7A mining deposit types (belts and ice first), a regional market order book, one refining and fabrication chain, bare NPC baseline hulls, ship loss and wrecks, §7B salvage grades with Class 1 Solo hulk interiors (doc 16), and Secured-space encounter anomalies: signal fires and contraband drifts first (doc 20).
 
 ## M3 — Landing & Planet Building (8–10 wks)
 LZ landing with Administered corridors and one free-descent world (§7C), Holo-Command planet building in Direct and Governor modes (§7D.1a), structure upkeep and decay into derelicts (§7D), a starter research tree, Transport fleet missions, and beginner protection (doc 17, 19).

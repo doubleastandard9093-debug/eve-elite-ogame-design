@@ -28,7 +28,7 @@ Defend self, mine and hold can run while orbiting or stationary.
 2. **Slipstream**: in-system travel.
 3. **Instance jump lane**: jumps to instanced sites.
 4. **Trade lane**: travel between settled locations within a system.
-5. **Wormholes / jump gates / stellar anomalies**: long jumps, such as to another system. Anomalies are odd distortions that jump you to a random location.
+5. **Wormholes / jump gates / stellar anomalies**: long jumps, such as to another system. Odd distortions that throw a ship a long way, often to another system, sometimes at random. Not to be confused with encounter anomalies (doc 20).
 6. **Galactic gates** (incomplete / ancient ruins): will eventually jump to other galaxies.
 
 ## Lanes are owned corridors

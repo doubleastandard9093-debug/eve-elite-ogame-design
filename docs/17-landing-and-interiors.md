@@ -2,7 +2,7 @@
 Source: Aaron's design update, 2026-10-27.
 
 ## §7C Landing tiers
-Fully simulating 1:1 atmospheric planets would break the game's scale (TODO: write the scale-rules section), so landing has four tiers:
+Fully simulating 1:1 atmospheric planets would break the scale rules (TODO: the brief still doesn't define the scale rules; only the galaxy scale in doc 13), so landing has four tiers:
 | Body | Landing |
 |---|---|
 | **Gas giants** | Orbital only (fuel scooping, doc 19 §7D.1b). |

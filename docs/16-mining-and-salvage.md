@@ -16,7 +16,7 @@ Four deposit types, each a different flying problem:
 - Large asteroids can be landed on and built on (doc 17, doc 19).
 
 ## §7B Salvage
-### Site tiers
+### Wreck ages
 Fresh field wreck → cooled hulk → ancient derelict.
 
 ### Damage grades
@@ -31,8 +31,8 @@ Fresh field wreck → cooled hulk → ancient derelict.
 - **Station derelicts** yield station modules (habitat blocks, dock sections); they are not rebuildable themselves.
 
 ### §7B.2 Hulk flags
-Hulk interiors are **shared**, not solo-instanced. You pick a flag on breach:
-- **Solo:** nobody else may enter. The flag holds for the decay window so a solo run can't be jumped.
+Hulk interiors are **shared**, not solo-instanced. That sharing never happens in Secured space: Class 3 and 4 don't spawn there, and Class 1 is PVE by rule. You pick a flag on breach:
+- **Solo:** nobody else may enter. The flag holds for the decay window so a solo run can't be jumped. The cost is yield, not safety.
 - **Open:** anyone enters; contested wrecks and fights. Compartments are knife-range, so a well-flown salvage frigate can beat a bigger ship inside a hull.
 - **Corp:** your company only.
 
@@ -43,8 +43,8 @@ The flag is **broadcast at scanner range** before you breach.
 |---|---|---|
 | **1 Small** | Frigate/destroyer hulks, rogue dens | Solo or Corp only. PVE by rule; the entry profession. |
 | **2 Mid** | Cruiser hulks, pirate hideouts, worked mines | Solo, Open or Corp. |
-| **3 Large** | Battleship hulks, warrens | Open or Corp only. |
-| **4 Massive** | Capital and station derelicts, sentinel vaults | Open only, no flag. Contested objectives, not instances: anyone who scans the site can breach the same wreck. Endgame of salvage. |
+| **3 Large** | Battleship hulks, warrens | Open or Corp only. **Does not spawn in Secured;** Restricted and outward. In Restricted, a player fight still needs a declared war. |
+| **4 Massive** | Capital and station derelicts, sentinel vaults | Open only, no flag choice, no private claim. **Does not spawn in Secured;** Restricted and outward. Contested objectives, not instances. In Restricted a player fight still needs a declared war; in Borderland and Frontier the wreck is open. The capital-derelict endgame lives outside Secured space. |
 
 ### Open pays ~2x Solo
 Paid four ways:
@@ -53,6 +53,6 @@ Paid four ways:
 3. Longer decay window, instead of a short stability clock.
 4. If you own the wreck's claim volume, a **salvage-rights toll** on other entrants' yield.
 
-**Class 3–4 sites in Secured space.** They still spawn in Secured space. There, breaching under the Open/salvage PVP flag is an opt-in exception to Secured's no-hostility rule, like the duel flag. Choosing not to flag is allowed but gives reduced rewards.
+**Standing instruction:** the hulk PVP option pays more than the PVE option, larger salvage sites are PVP only, and the smallest is PVE only. The class ladder does exactly that. Inside Secured space, encounter anomalies (doc 20) replace big salvage.
 
 **Solo must never be a trap.** It gets a shorter clock but a guaranteed room. No NPC spawn scales with another player's presence, and nothing inside is designed to make a solo run unwinnable.
