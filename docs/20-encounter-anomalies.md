@@ -14,7 +14,7 @@ Encounter anomalies replace big salvage inside Secured space, and then keep goin
 ## What changes by band
 - **Secured:** all four families, PVE only. System authority is already on site, or comes when called. No player may shoot another, duel flag aside. Payout is the floor of the table. The point is to teach the scan, the approach and the fight without getting jumped.
 - **Restricted:** harder NPC tables, better components. Contesting another player needs a declared war with 48 h notice; an unwarred pilot is not a legal target. Reporting a contraband drift still works and pays less than keeping it.
-- **Borderland:** inside an announced claim the site is open, and the claim owner can toll it like a lane. Outside a claim it stays PVE against NPCs. Payout steps up. Nests are big enough that a wing is the right answer and a solo frigate is a scout.
+- **Borderland:** inside an announced claim the site is open, and the claim owner can toll it like a lane. Toll income does **not** count toward the claim's Defense Budget (doc 15). Outside a claim it stays PVE against NPCs. Payout steps up. Nests are big enough that a wing is the right answer and a solo frigate is a scout.
 - **Frontier:** uncapped NPC table, best component rolls, open. Dead signatures here are the ones that resolve into hidden wormholes. A nest in The Black may field a capital-scale NPC hull: the fight Class 4 used to promise, without a recoverable capital wreck in Secured space.
 
 ## Two rules that protect salvage

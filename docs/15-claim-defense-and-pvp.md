@@ -27,17 +27,15 @@ Trade volume also feeds DB (it is one of the three inputs in the cap reference p
 ### Defense ladder
 Autonomy and cost run upward; capability runs the other way.
 - **Tier 1 – Gun placements** and **Tier 2 – defense platforms**: fully autonomous, cheap per unit, hungry for ammo.
-- **Tier 3 – Patrol fighters**: cheap hulls, constant attrition cost.
-- **Tier 4 – NPC squadron wings**: standing-gated; a hostile faction may refuse the contract.
-- **Tier 5 – Hired players.** The 50% cap applies here.
-- **Capital**: players only.
-
-The brief names tier 5 as hired players; the numbering of tiers 1–4 above is inferred from the ladder order.
+- **Tier 3 – Capital**: players only.
+- **Tier 4 – NPC-flown ships**: patrol fighters (cheap hulls, constant attrition cost) and NPC squadron wings (standing-gated; a hostile faction may refuse the contract). Both are NPC-crewed ships rather than fixed hardware or players, so they share one tier.
+- **Tier 5 – Hired players.** The 50% cap applies here, and only here.
 
 - **NPC hardware has a stat ceiling and is meant to die.** It caps below player-grade fitting and wins on geometry and numbers. An NPC-only defense is a speed bump.
 - **NPCs cannot hold a lane exit against players alone.**
 - **Escrow:** payment comes out of DB before the fight. If DB can't cover the contract, there is no contract.
 - **Bonuses:** the largest bonus goes to defenders for a surviving lane or structure, not for kills.
+- **Tolls don't count.** Lane tolls and encounter-anomaly tolls are income to the owner but **do not count toward the claim's Defense Budget**. DB comes only from industrial output, residency and trade volume.
 - **Vetting:** standing minimums only. A refusal list would let a bloc gate who is allowed to earn, so that option is closed.
 
 ### Anti-bloat rules

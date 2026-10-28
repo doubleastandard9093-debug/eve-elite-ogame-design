@@ -14,6 +14,21 @@ This doc names the source games only so we can analyze them. Nullpoint's game co
 
 Star Trek Online and Star Wars: The Old Republic remain earlier inspirations for crew and story.
 
+## Reference values: landing and jump drives
+Aaron asked Nullpoint's landing ratios and jump distances to be modeled on these. Nullpoint's own values are in docs 13 and 17.
+
+| Game | Mechanic | Reference value | Source |
+|---|---|---|---|
+| Elite Dangerous | Orbital cruise floor | 25 km | [Orbital Cruise](https://elite-dangerous.fandom.com/wiki/Orbital_Cruise) |
+| Elite Dangerous | Glide | 2,500 m/s, from 25 km down to 3 km; entry pitch −5° to −60° | [Glide](https://elite-dangerous.fandom.com/wiki/Glide) |
+| Elite Dangerous | Landable gravity | No hard limit; generated planets reported capped near 1.99 g; walking disabled above 2.69 g | [Gravity](https://elite-dangerous.fandom.com/wiki/Gravity), [forum](https://forums.frontier.co.uk/threads/super-earths-in-ed.481416/) |
+| Elite Dangerous | Largest landable body | 28,878 km radius (4.64 g) | [Planetary Landing](https://elite-dangerous.fandom.com/wiki/Planetary_Landing) |
+| Elite Dangerous | Jump range | Sidewinder 7.6 → 24.4 ly; Diamondback Explorer 14.2 → 41.6 ly; Anaconda 9.4 → 41.5 ly (default → optimized), ~80 ly engineered | [Jump range](https://elite-dangerous.fandom.com/wiki/Jump_range) |
+| Elite Dangerous | Fuel per jump | f = r × (d × m_ship / m_opt)^p × 10⁻³; r 8–12 by rating; p 2.00 (class 2) to 2.90 (class 8) | [Frame Shift Drive](https://elite-dangerous.fandom.com/wiki/Frame_Shift_Drive) |
+| EVE Online | Capital jump range | Dreadnought/carrier 3.5 → 7 ly; supercarrier/titan 3 → 6 ly; Black Ops 4 → 8 ly; jump freighter/Rorqual 5 → 10 ly (base → max skills) | [EVE Uni: Jump drives](https://wiki.eveuniversity.org/Jump_drives) |
+| EVE Online | Fuel per ly | Capitals 3,000 isotopes; Black Ops 700; jump freighters 8,200–10,000; −10% per level of Jump Fuel Conservation | same |
+| EVE Online | Jump fatigue | min 10 × (1 + ly) min, else × (1 + ly); cap 5 h. Activation cooldown 1/10 of fatigue, min (1 + ly) min, cap 30 min. Industrials get −90% effective distance | same |
+
 ## Synthesis (2026-10 update)
 - **Space western first:** Firefly's tone over a PVE-focused sandbox. Work, salvage and survival on the frontier, not empire-scale war.
 - **Lanes shape the map:** Freelancer-style trade lanes become owned corridors (doc 13).

@@ -45,7 +45,7 @@ The one body type outside the planetoid model.
 - Entry angle, altitude band, thermal load and time-on-station all matter. Greed on tank volume risks heat damage.
 - Thin upper atmosphere is slow and cool; deep is fast and hot. A bigger scoop module fills faster and runs hotter.
 - **Cloud density tiers.** Each gas giant has a cloud density tier: **Rare**, **Consistent** or **Abundant**. The tier sets scoop yield and fuel-station yield.
-- **Weekly re-roll.** Each planet re-rolls its tier at random once a week (weekly respawn). Exact odds per tier are not set yet.
+- **Weekly re-roll.** Each planet re-rolls its tier at random once a week (weekly respawn). First-pass default odds: **Rare 30%, Consistent 50%, Abundant 20%**.
 - Density and weather combine: an Abundant calm giant is a strategic asset, an Abundant violent one is a high-skill site, and a Rare calm one is where you learn.
 
 ### Fuel mining station
@@ -65,7 +65,7 @@ Orbital batteries can't cover a platform inside an atmosphere, and the platform 
 An attacker descending from orbit fights the boundary layer, then weather, then the picket, while the interceptor cage climbs past to hit their exit vectors. A gas-giant assault is the inverse of a station assault.
 
 ### Safe refueling
-- **Jump fuel is the projection limiter:** how far a ship can operate is bounded by the jump fuel it carries, and gas-giant fuel stations are where that fuel is refilled. How much fuel a station supplies follows its giant's cloud density tier, so its reach changes with the weekly re-roll. (TODO: jump range and fuel-per-jump numbers.) So a defended station extends every friendly ship's operational radius by its full jump range.
+- **Jump fuel is the projection limiter:** how far a ship can operate is bounded by the jump fuel it carries, and gas-giant fuel stations are where that fuel is refilled. How much fuel a station supplies follows its giant's cloud density tier, so its reach changes with the weekly re-roll. Jump ranges and fuel per jump are in doc 13. So a defended station extends every friendly ship's operational radius by its full jump range.
 - Access: **open** (toll), **standing-gated**, or **company-only**. An open station in dangerous space is a public good and an obvious target, the most contested structure type.
 - **Refueling is a real stop:** docking means a stationary window. Under threat you choose full tank, half, or leave dry and jump short.
 - **Counter to lane interdiction:** a ship pulled from a corridor can run for a defended giant and use it as a hard point while its drive charges.

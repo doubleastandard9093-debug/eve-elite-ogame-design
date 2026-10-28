@@ -7,6 +7,13 @@ Landing is **seamless, onto full-size bodies, with no loading screen**. A pilot 
 
 **What "scale rules" meant.** The earlier brief said full 1:1 atmospheric planets would "break the scale rules". That referred to engine limits, not a game rule: rendering, streaming and simulating full-size planets costs a lot of performance, and positions far from the origin need UE5 Large World Coordinates (LWC) to stay precise. Seamless descent needs streamed terrain and LWC-safe coordinates on every landable body. That is a tech cost to budget for (doc 08), not a reason to avoid it.
 
+### Descent numbers (first pass)
+- **Orbital cruise:** around a landable body, down to a floor of **25 km** altitude. Holding a near-level attitude (about ±5°) gives the best orbital speed.
+- **Glide:** starts at 25 km if you arrive slow enough and pitched between **−5° and −60°** (about −45° is ideal). It is unpowered, holds **2.5 km/s**, and ends at **3 km**. Too fast or too steep and you emergency-drop with damage; too shallow and you bounce back to orbital cruise.
+- **Surface flight:** below 3 km, normal thrusters take over. Heavy ships with weak thrusters struggle at high gravity.
+- **Gravity:** landable generated bodies go up to **2.0 g**. Authored worlds may go higher, up to **5 g**. On-foot disembarking is disabled above **2.7 g**.
+- **Body size:** landable bodies run from small moons and large asteroids up to about **29,000 km** radius.
+
 ### How the tiers fit together
 - **Seamless descent is the default** for landable airless bodies (moons, rocks, large asteroids) and authored atmospheric worlds, with drag, entry heat, gravity and terrain collision where there is an atmosphere.
 - **Developed worlds** are still governed by landing zones and corridors (§7C.2a below): the descent is seamless, but where you may come down is controlled.
