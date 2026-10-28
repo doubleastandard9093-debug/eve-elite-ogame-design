@@ -2,13 +2,14 @@
 #include "HDShipPawn.h"
 #include "HDShipMovementComponent.h"
 #include "HDShipPowerComponent.h"
+#include "HDPlayerController.h"
 #include "Engine/Canvas.h"
 
 void AHDHUD::DrawHUD()
 {
 	Super::DrawHUD();
 	const AHDShipPawn* Ship = Cast<AHDShipPawn>(GetOwningPawn());
-	if (!Ship || !Canvas) return;
+	if (!Ship || !Canvas || !Ship->Movement || !Ship->Power || !Ship->Shields) return;
 
 	const UHDShipMovementComponent* M = Ship->Movement;
 	const UHDShipPowerComponent* P = Ship->Power;
@@ -33,6 +34,27 @@ void AHDHUD::DrawHUD()
 		DrawText(L, FLinearColor(0.4f, 0.9f, 1.f), 40.f, Y);
 		Y += 20.f;
 	}
+	const AHDPlayerController* PC = Cast<AHDPlayerController>(GetOwningPlayerController());
+	if (PC && PC->IsMenuOpen())
+	{
+		static const TCHAR* Help[] = {
+			TEXT("CONTROLS  (Tab / Menu to close)"),
+			TEXT("Thrust/strafe: W S A D  | left stick, RT fwd, LT reverse"),
+			TEXT("Up/down: R F  | hold L3 up, hold R3 down"),
+			TEXT("Pitch/yaw: mouse, arrows  | right stick    Roll: Q E  | LB RB"),
+			TEXT("Fire: LMB, Space  | A      Flight assist: Z  | B"),
+			TEXT("Shields equalize: X  | X     Slipstream: J  | Y"),
+			TEXT("Power Bal/Atk/Tank/Run: 1 2 3 4  | D-pad up/right/down/left"),
+			TEXT("Recenter VR: Home  | View"),
+		};
+		Y += 20.f;
+		for (const TCHAR* L : Help)
+		{
+			DrawText(FString(L), FLinearColor(1.f, 0.85f, 0.4f), 40.f, Y);
+			Y += 20.f;
+		}
+	}
+
 	// crosshair
 	const float CX = Canvas->ClipX * 0.5f, CY = Canvas->ClipY * 0.5f;
 	DrawLine(CX - 10.f, CY, CX + 10.f, CY, FLinearColor::White);

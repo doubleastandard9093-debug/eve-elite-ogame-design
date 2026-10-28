@@ -23,6 +23,7 @@ public:
 	virtual float TakeDamage(float Damage, struct FDamageEvent const& Event, AController* Instigator, AActor* Causer) override;
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 	virtual FVector GetVelocity() const override;
+	virtual void BeginPlay() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ship") TObjectPtr<UBoxComponent> Collision;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ship") TObjectPtr<UStaticMeshComponent> Hull;
@@ -32,6 +33,12 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ship") TObjectPtr<UHDLaserComponent> Laser;
 	UPROPERTY(EditDefaultsOnly, Replicated, BlueprintReadOnly, Category = "Ship") float HullHP = 1000.f;
 	UPROPERTY(EditDefaultsOnly, Category = "Ship") float MaxHullHP = 1000.f;
+
+	/** Power presets (W, S, E, A), 0..100 each. Keys 1-4 / D-pad up, right, down, left. */
+	UPROPERTY(EditDefaultsOnly, Category = "Power") FVector4 PresetBalanced = FVector4(50.f, 50.f, 50.f, 50.f);
+	UPROPERTY(EditDefaultsOnly, Category = "Power") FVector4 PresetAttack = FVector4(100.f, 50.f, 25.f, 25.f);
+	UPROPERTY(EditDefaultsOnly, Category = "Power") FVector4 PresetTank = FVector4(25.f, 100.f, 50.f, 25.f);
+	UPROPERTY(EditDefaultsOnly, Category = "Power") FVector4 PresetRun = FVector4(25.f, 50.f, 100.f, 25.f);
 
 	/** Pilot eye anchor in the cockpit; HMD pose is applied relative to this. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Cockpit") TObjectPtr<USceneComponent> CockpitRoot;
@@ -52,6 +59,9 @@ private:
 	void OnPitch(const FInputActionValue& V);
 	void OnYaw(const FInputActionValue& V);
 	void OnRoll(const FInputActionValue& V);
+	void OnLookStick(const FInputActionValue& V);
+	void OnMouseAim(const FInputActionValue& V);
+	void OnMenu(const FInputActionValue& V);
 	void OnFireStart(const FInputActionValue& V);
 	void OnFireStop(const FInputActionValue& V);
 	void OnToggleFA(const FInputActionValue& V);
@@ -62,5 +72,5 @@ private:
 	void OnPowerRun(const FInputActionValue& V);
 	void OnEqualize(const FInputActionValue& V);
 	void OnRecenter(const FInputActionValue& V);
-	void SetPower(float W, float S, float E, float A);
+	void SetPower(const FVector4& WSEA);
 };

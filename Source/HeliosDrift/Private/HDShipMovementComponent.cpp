@@ -36,8 +36,11 @@ FHDShipState UHDShipMovementComponent::CaptureState(float Timestamp) const
 {
 	FHDShipState S;
 	S.Timestamp = Timestamp;
-	S.Location = GetOwner()->GetActorLocation();
-	S.Rotation = GetOwner()->GetActorQuat();
+	if (const AActor* Owner = GetOwner())
+	{
+		S.Location = Owner->GetActorLocation();
+		S.Rotation = Owner->GetActorQuat();
+	}
 	S.Velocity = Velocity;
 	S.AngularVelocity = AngularVelocity;
 	return S;
@@ -50,7 +53,7 @@ void UHDShipMovementComponent::SimulateMove(const FHDShipMove& Move)
 	if (!Owner || Dt <= 0.f) return;
 
 	const bool bSlip = TravelMode == EHDTravelMode::Slipstream;
-	const FVector RotIn = Move.Rot.BoundToCube(1.f) * (bSlip ? 0.25f : 1.f);
+	const FVector RotIn = Move.Rot.BoundToCube(1.f) * (bSlip ? SlipTurnScale : 1.f);
 	const FVector LinIn = bSlip ? FVector::ZeroVector : Move.Linear.BoundToCube(1.f);
 
 	// Angular (deg/s in local pitch/yaw/roll)
@@ -107,11 +110,23 @@ void UHDShipMovementComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 	if (Pawn->IsLocallyControlled())
 	{
 		FHDShipMove M;
-		M.DeltaTime = FMath::Min(DeltaTime, 0.1f);
+		M.DeltaTime = FMath::Min(DeltaTime, MaxMoveDeltaTime);
 		ClientTime += M.DeltaTime;
 		M.Timestamp = ClientTime;
 		M.Linear = InputLinear.BoundToCube(1.f);
-		M.Rot = InputRot.BoundToCube(1.f);
+
+		// Rate inputs (keys, stick) are already -1..1 of max turn rate. Mouse is a delta in degrees:
+		// convert to the rate that covers it in this tick, normalized by max rate. No double scaling.
+		FVector Rot = InputRot;
+		Rot.X += StickRot.X;
+		Rot.Y += StickRot.Y;
+		if (DeltaTime > KINDA_SMALL_NUMBER && !PendingMouseDegrees.IsZero())
+		{
+			if (MaxAngularRate.X > KINDA_SMALL_NUMBER) { Rot.X += PendingMouseDegrees.X / (DeltaTime * MaxAngularRate.X); }
+			if (MaxAngularRate.Y > KINDA_SMALL_NUMBER) { Rot.Y += PendingMouseDegrees.Y / (DeltaTime * MaxAngularRate.Y); }
+		}
+		PendingMouseDegrees = FVector2D::ZeroVector;
+		M.Rot = Rot.BoundToCube(1.f);
 		M.bFlightAssist = bFlightAssist;
 		SimulateMove(M);
 		if (Pawn->HasAuthority())
@@ -121,21 +136,28 @@ void UHDShipMovementComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 		else
 		{
 			Unacked.Add(M);
-			if (Unacked.Num() > 240) { Unacked.RemoveAt(0); }
+			if (Unacked.Num() > FMath::Max(1, MaxUnackedMoves)) { Unacked.RemoveAt(0); }
 			ServerMove(M);
 		}
 	}
-	else if (!Pawn->HasAuthority() && ServerState.Timestamp > 0.f)
+	else if (Pawn->HasAuthority())
 	{
-		// Simulated proxy: smooth toward server state.
+		// Remote-controlled ship on the server: grant real time the client may spend on moves.
+		ServerTimeBudget = FMath::Min(ServerTimeBudget + DeltaTime, MaxClientTimeAhead);
+	}
+	else if (ServerState.Timestamp > 0.f)
+	{
+		// Simulated proxy: smooth toward server state (exponential, frame-rate independent).
+		Velocity = ServerState.Velocity;
+		AngularVelocity = ServerState.AngularVelocity;
 		const FVector L = Pawn->GetActorLocation();
-		if (FVector::DistSquared(L, ServerState.Location) > FMath::Square(100000.f))
+		if (FVector::DistSquared(L, ServerState.Location) > FMath::Square(ProxySnapDistance))
 		{
 			Pawn->SetActorLocationAndRotation(ServerState.Location, ServerState.Rotation);
 		}
 		else
 		{
-			const float Alpha = FMath::Clamp(DeltaTime * 12.f, 0.f, 1.f);
+			const float Alpha = 1.f - FMath::Exp(-ProxySmoothingRate * DeltaTime);
 			const FVector NewL = L + (ServerState.Location - L) * Alpha;
 			const FQuat NewQ = FQuat::Slerp(Pawn->GetActorQuat(), ServerState.Rotation, Alpha);
 			Pawn->SetActorLocationAndRotation(NewL, NewQ);
@@ -146,9 +168,12 @@ void UHDShipMovementComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 void UHDShipMovementComponent::ServerMove_Implementation(const FHDShipMove& Move)
 {
 	if (Move.Timestamp <= LastServerTimestamp) return; // stale/out of order
+	if (!FMath::IsFinite(Move.Timestamp) || !FMath::IsFinite(Move.DeltaTime) || Move.Linear.ContainsNaN() || Move.Rot.ContainsNaN()) return;
 	LastServerTimestamp = Move.Timestamp;
 	FHDShipMove M = Move;
-	M.DeltaTime = FMath::Clamp(M.DeltaTime, 0.f, 0.1f);
+	// Clamp to max step and to the real time this client has been granted (stops speed hacks via fast clocks).
+	M.DeltaTime = FMath::Clamp(M.DeltaTime, 0.f, FMath::Min(MaxMoveDeltaTime, FMath::Max(ServerTimeBudget, 0.f)));
+	ServerTimeBudget -= M.DeltaTime;
 	SimulateMove(M);
 	ServerState = CaptureState(M.Timestamp);
 	ClientAck(ServerState);
@@ -181,7 +206,7 @@ void UHDShipMovementComponent::DropOut(bool bInterdicted)
 	if (TravelMode == EHDTravelMode::Normal) return;
 	if (TravelMode == EHDTravelMode::Slipstream)
 	{
-		Velocity = Velocity.GetSafeNormal() * BaseMaxSpeed * 0.5f;
+		Velocity = Velocity.GetSafeNormal() * BaseMaxSpeed * DropOutSpeedFraction;
 	}
 	TravelMode = EHDTravelMode::Normal;
 	SpoolRemaining = 0.f;
@@ -192,17 +217,19 @@ void UHDShipMovementComponent::DropOut(bool bInterdicted)
 AActor* UHDShipMovementComponent::PickSlipTarget() const
 {
 	AActor* Owner = GetOwner();
+	UWorld* World = GetWorld();
+	if (!Owner || !World) return nullptr;
 	AActor* Best = nullptr;
 	double BestDist = TNumericLimits<double>::Max();
 	const FVector Fwd = Owner->GetActorForwardVector();
-	for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+	for (TActorIterator<AActor> It(World); It; ++It)
 	{
 		AActor* A = *It;
 		if (A == Owner || !A->ActorHasTag(TEXT("SlipTarget"))) continue;
 		const FVector To = A->GetActorLocation() - Owner->GetActorLocation();
 		const double Dist = To.Size();
 		if (Dist < DropDistance * 2.f) continue;
-		if (FVector::DotProduct(To / Dist, Fwd) < 0.95f) continue;
+		if (FVector::DotProduct(To / Dist, Fwd) < SlipTargetMinDot) continue;
 		if (Dist < BestDist) { BestDist = Dist; Best = A; }
 	}
 	return Best;
@@ -220,7 +247,7 @@ void UHDShipMovementComponent::UpdateTravelAuthority(float DeltaTime)
 			TravelTarget = PickSlipTarget();
 		}
 	}
-	else if (TravelMode == EHDTravelMode::Slipstream && TravelTarget.IsValid())
+	else if (TravelMode == EHDTravelMode::Slipstream && TravelTarget.IsValid() && GetOwner())
 	{
 		if (FVector::Dist(TravelTarget->GetActorLocation(), GetOwner()->GetActorLocation()) < DropDistance + SlipSpeed * DeltaTime * 2.f)
 		{

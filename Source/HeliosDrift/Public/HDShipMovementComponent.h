@@ -46,9 +46,14 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
-	/** Local input, written by the pawn's input handlers. */
+	/** Local rate input (-1..1), written by the pawn's input handlers (keyboard, triggers, left stick, arrows, bumpers). */
 	FVector InputLinear = FVector::ZeroVector;
 	FVector InputRot = FVector::ZeroVector;
+	/** Right-stick rate input (X pitch, Y yaw, -1..1), already scaled by stick sensitivity. Rate-based: held deflection = held turn rate. */
+	FVector2D StickRot = FVector2D::ZeroVector;
+
+	/** Delta-based mouse aim: degrees of (pitch, yaw) requested since the last tick. Converted to a rate for exactly one tick. */
+	void AddMouseAimDegrees(const FVector2D& PitchYawDegrees) { PendingMouseDegrees += PitchYawDegrees; }
 
 	UPROPERTY(BlueprintReadOnly, Category = "Flight") bool bFlightAssist = true;
 	UFUNCTION(BlueprintCallable, Category = "Flight") void ToggleFlightAssist() { bFlightAssist = !bFlightAssist; }
@@ -71,6 +76,24 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Travel") float SpoolTime = 4.f;
 	UPROPERTY(EditAnywhere, Category = "Travel") float DropDistance = 50000.f;
 	UPROPERTY(EditAnywhere, Category = "Travel") float InterdictCooldown = 10.f;
+	/** Fraction of normal turn rate available in slipstream. */
+	UPROPERTY(EditAnywhere, Category = "Travel", meta = (ClampMin = "0", ClampMax = "1")) float SlipTurnScale = 0.25f;
+	/** Speed on dropping out of slipstream, as a fraction of BaseMaxSpeed. */
+	UPROPERTY(EditAnywhere, Category = "Travel", meta = (ClampMin = "0", ClampMax = "1")) float DropOutSpeedFraction = 0.5f;
+	/** Slipstream only locks targets within this cone (cosine of half-angle). */
+	UPROPERTY(EditAnywhere, Category = "Travel", meta = (ClampMin = "0", ClampMax = "1")) float SlipTargetMinDot = 0.95f;
+
+	// Networking
+	/** Longest single simulation step (s). Longer frames are clamped. */
+	UPROPERTY(EditAnywhere, Category = "Network") float MaxMoveDeltaTime = 0.1f;
+	/** Max client moves kept for replay. */
+	UPROPERTY(EditAnywhere, Category = "Network") int32 MaxUnackedMoves = 240;
+	/** Simulated proxies snap instead of smoothing beyond this error (cm). */
+	UPROPERTY(EditAnywhere, Category = "Network") float ProxySnapDistance = 100000.f;
+	/** Simulated proxy smoothing speed (1/s); frame-rate independent. */
+	UPROPERTY(EditAnywhere, Category = "Network") float ProxySmoothingRate = 12.f;
+	/** Server: how far (s) a client's simulated time may run ahead of real time before moves are trimmed (anti speed-hack). */
+	UPROPERTY(EditAnywhere, Category = "Network") float MaxClientTimeAhead = 0.25f;
 
 protected:
 	UFUNCTION(Server, Unreliable) void ServerMove(const FHDShipMove& Move);
@@ -94,4 +117,7 @@ private:
 	float SpoolRemaining = 0.f;
 	float SlipCooldown = 0.f;
 	TWeakObjectPtr<AActor> TravelTarget;
+	FVector2D PendingMouseDegrees = FVector2D::ZeroVector;
+	/** Server: real time granted to the owning client minus simulated time it has used. */
+	float ServerTimeBudget = 0.f;
 };
