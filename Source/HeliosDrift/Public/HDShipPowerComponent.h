@@ -27,6 +27,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Power") float ReactorBudget = 200.f;
 	UPROPERTY(EditDefaultsOnly, Category = "Power") float RampPerSecond = 100.f;
+	/** Max power any one subsystem can take. */
+	UPROPERTY(EditDefaultsOnly, Category = "Power") float MaxPerSubsystem = 100.f;
 
 protected:
 	UPROPERTY(Replicated) TArray<float> Current;
@@ -53,6 +55,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Shields") float MaxPerFacing = 500.f;
 	/** Per-facing regen per second at 50 shield power (scales with Shields power if owner has a power component). */
 	UPROPERTY(EditDefaultsOnly, Category = "Shields") float RegenPerSecond = 20.f;
+	/** Fraction of total shield lost when equalizing (0 = free). */
+	UPROPERTY(EditDefaultsOnly, Category = "Shields", meta = (ClampMin = "0", ClampMax = "1")) float EqualizeLoss = 0.f;
 
 	virtual void BeginPlay() override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;

@@ -21,17 +21,20 @@ void UHDShipPowerComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
 
 void UHDShipPowerComponent::ServerSetAllocation_Implementation(const TArray<float>& NewTargets)
 {
-	if (NewTargets.Num() != NumSub) return;
+	if (NewTargets.Num() != NumSub || Target.Num() != NumSub) return;
+	for (float V : NewTargets) { if (!FMath::IsFinite(V)) return; } // reject NaN/Inf from clients
 	float Sum = 0.f;
-	for (float V : NewTargets) Sum += FMath::Clamp(V, 0.f, 100.f);
-	const float Scale = Sum > ReactorBudget ? ReactorBudget / Sum : 1.f;
-	for (int32 i = 0; i < NumSub; ++i) Target[i] = FMath::Clamp(NewTargets[i], 0.f, 100.f) * Scale;
+	for (float V : NewTargets) Sum += FMath::Clamp(V, 0.f, MaxPerSubsystem);
+	const float Budget = FMath::Max(ReactorBudget, 0.f);
+	const float Scale = (Sum > Budget && Sum > 0.f) ? Budget / Sum : 1.f;
+	for (int32 i = 0; i < NumSub; ++i) Target[i] = FMath::Clamp(NewTargets[i], 0.f, MaxPerSubsystem) * Scale;
 }
 
 void UHDShipPowerComponent::TickComponent(float Dt, ELevelTick TT, FActorComponentTickFunction* F)
 {
 	Super::TickComponent(Dt, TT, F);
 	if (!GetOwner() || !GetOwner()->HasAuthority()) return;
+	if (Current.Num() != NumSub || Target.Num() != NumSub) return;
 	for (int32 i = 0; i < NumSub; ++i) Current[i] = FMath::FInterpConstantTo(Current[i], Target[i], Dt, RampPerSecond);
 }
 
@@ -56,18 +59,24 @@ EHDShieldFacing UHDShieldComponent::FacingFromLocalDir(const FVector& D)
 
 float UHDShieldComponent::AbsorbDamage(float Amount, const FVector& WorldHitDir)
 {
-	const FVector Local = GetOwner()->GetActorTransform().InverseTransformVectorNoScale(-WorldHitDir);
-	float& F = Facings[(int32)FacingFromLocalDir(Local)];
-	const float Absorbed = FMath::Min(F, Amount);
+	const AActor* Owner = GetOwner();
+	if (!Owner || !(Amount > 0.f)) return FMath::Max(Amount, 0.f);
+	const int32 Idx = (int32)FacingFromLocalDir(Owner->GetActorTransform().InverseTransformVectorNoScale(-WorldHitDir));
+	if (!Facings.IsValidIndex(Idx)) return Amount;
+	float& F = Facings[Idx];
+	const float Absorbed = FMath::Clamp(F, 0.f, Amount);
 	F -= Absorbed;
 	return Amount - Absorbed;
 }
 
 void UHDShieldComponent::ServerEqualize_Implementation()
 {
+	if (Facings.Num() != NumFace) return;
 	float Sum = 0.f;
 	for (float V : Facings) Sum += V;
-	for (float& V : Facings) V = Sum / NumFace;
+	// Equalizing costs a share of the pool so it is a tactical choice, not free healing of one side.
+	const float Each = FMath::Min(MaxPerFacing, Sum * FMath::Clamp(1.f - EqualizeLoss, 0.f, 1.f) / NumFace);
+	for (float& V : Facings) V = Each;
 }
 
 void UHDShieldComponent::BeginPlay()

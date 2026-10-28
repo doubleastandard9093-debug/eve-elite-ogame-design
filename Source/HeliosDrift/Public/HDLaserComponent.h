@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Engine/EngineTypes.h"
 #include "HDLaserComponent.generated.h"
 
 /** Hitscan pulse laser (doc 02). Server traces and applies damage; tracers are multicast debug lines. */
@@ -18,6 +19,13 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Weapon") float Damage = 40.f;        // at 50 weapons power
 	UPROPERTY(EditAnywhere, Category = "Weapon") float FireInterval = 0.15f;
 	UPROPERTY(EditAnywhere, Category = "Weapon") float MuzzleOffset = 500.f;
+	/** Damage multiplier = PowerScaleBase + WeaponsPower / PowerScaleDivisor (1.0 at 50 power). */
+	UPROPERTY(EditAnywhere, Category = "Weapon") float PowerScaleBase = 0.5f;
+	UPROPERTY(EditAnywhere, Category = "Weapon", meta = (ClampMin = "1")) float PowerScaleDivisor = 100.f;
+	UPROPERTY(EditAnywhere, Category = "Weapon") TEnumAsByte<ECollisionChannel> TraceChannel = ECC_Visibility;
+
+	/** Server: stop firing immediately (death, slipstream, etc.). */
+	void StopFiringAuthority() { bWantsFire = false; }
 
 protected:
 	UFUNCTION(NetMulticast, Unreliable) void MulticastTracer(const FVector& Start, const FVector& End, bool bHit);

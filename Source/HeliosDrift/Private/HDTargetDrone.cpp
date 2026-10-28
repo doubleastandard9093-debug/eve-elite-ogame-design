@@ -33,7 +33,7 @@ void AHDTargetDrone::BeginPlay()
 {
 	Super::BeginPlay();
 	Center = GetActorLocation();
-	Hull = MaxHull;
+	if (HasAuthority()) { Hull = MaxHull; }
 }
 
 void AHDTargetDrone::Tick(float DeltaSeconds)
@@ -47,9 +47,10 @@ void AHDTargetDrone::Tick(float DeltaSeconds)
 
 float AHDTargetDrone::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	if (!HasAuthority() || !bAlive) return 0.f;
-	const FVector Dir = DamageCauser ? (GetActorLocation() - DamageCauser->GetActorLocation()).GetSafeNormal() : GetActorForwardVector();
-	const float Overflow = Shields->AbsorbDamage(Damage, Dir);
+	if (!HasAuthority() || !bAlive || !(Damage > 0.f)) return 0.f;
+	FVector Dir = DamageCauser ? (GetActorLocation() - DamageCauser->GetActorLocation()).GetSafeNormal() : FVector::ZeroVector;
+	if (Dir.IsNearlyZero()) { Dir = -GetActorForwardVector(); }
+	const float Overflow = Shields ? Shields->AbsorbDamage(Damage, Dir) : Damage;
 	Hull = FMath::Max(0.f, Hull - Overflow);
 	if (Hull <= 0.f)
 	{
@@ -64,7 +65,7 @@ float AHDTargetDrone::TakeDamage(float Damage, FDamageEvent const& DamageEvent, 
 void AHDTargetDrone::Respawn()
 {
 	Hull = MaxHull;
-	Shields->Refill();
+	if (Shields) { Shields->Refill(); }
 	bAlive = true;
 	ApplyAliveState();
 }

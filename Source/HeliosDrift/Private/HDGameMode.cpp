@@ -38,8 +38,8 @@ void AHDGameMode::PostLogin(APlayerController* NewPlayer)
 		if (!bFound || !WeakPC.IsValid()) return;
 		AHDShipPawn* Ship = Cast<AHDShipPawn>(WeakPC->GetPawn());
 		if (!Ship) return;
-		if (Rec.HullHP > 0.f) { Ship->HullHP = Rec.HullHP; }
-		if (Rec.SystemId == Sys && !Rec.Location.IsNearlyZero())
+		if (Rec.HullHP > 0.f) { Ship->HullHP = FMath::Min(Rec.HullHP, Ship->MaxHullHP); }
+		if (Rec.SystemId == Sys && !Rec.Location.IsNearlyZero() && !Rec.Location.ContainsNaN())
 		{
 			Ship->SetActorLocationAndRotation(Rec.Location, Rec.Rotation);
 		}
@@ -49,7 +49,8 @@ void AHDGameMode::PostLogin(APlayerController* NewPlayer)
 
 void AHDGameMode::Logout(AController* Exiting)
 {
-	if (const AHDShipPawn* Ship = Exiting ? Cast<AHDShipPawn>(Exiting->GetPawn()) : nullptr)
+	const AHDShipPawn* Ship = Exiting ? Cast<AHDShipPawn>(Exiting->GetPawn()) : nullptr;
+	if (Ship && Ship->HullHP > 0.f && !Ship->IsPendingKillPending())
 	{
 		FHDShipRecord Rec;
 		Rec.PilotId = PilotIdFor(Exiting);
