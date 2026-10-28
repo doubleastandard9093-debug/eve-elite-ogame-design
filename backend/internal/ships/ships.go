@@ -25,8 +25,11 @@ func (s Ship) Validate() error {
 	if s.PilotID == "" || len(s.PilotID) > 128 {
 		return errors.New("pilot_id must be 1-128 chars")
 	}
-	if s.Hull == "" {
-		return errors.New("hull is required")
+	if s.Hull == "" || len(s.Hull) > 64 {
+		return errors.New("hull must be 1-64 chars")
+	}
+	if len(s.SystemID) > 64 {
+		return errors.New("system_id must be <= 64 chars")
 	}
 	vals := append(append([]float64{s.HullHP}, s.Location[:]...), s.Rotation[:]...)
 	for _, v := range vals {

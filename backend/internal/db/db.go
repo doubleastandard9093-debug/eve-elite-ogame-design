@@ -4,7 +4,9 @@ package db
 import (
 	"context"
 	"database/sql"
+	"fmt"
 	"sort"
+	"strings"
 
 	"github.com/doubleastandard9093-debug/eve-elite-ogame-design/backend/migrations"
 	_ "github.com/jackc/pgx/v5/stdlib"
@@ -22,8 +24,13 @@ func Migrate(ctx context.Context, d *sql.DB) error {
 	}
 	sort.Slice(entries, func(i, j int) bool { return entries[i].Name() < entries[j].Name() })
 	for _, e := range entries {
+		if e.IsDir() || !strings.HasSuffix(e.Name(), ".sql") {
+			continue
+		}
 		var n int
-		_ = d.QueryRowContext(ctx, `SELECT count(*) FROM schema_migrations WHERE name=$1`, e.Name()).Scan(&n)
+		if err := d.QueryRowContext(ctx, `SELECT count(*) FROM schema_migrations WHERE name=$1`, e.Name()).Scan(&n); err != nil {
+			return fmt.Errorf("check migration %s: %w", e.Name(), err)
+		}
 		if n > 0 {
 			continue
 		}
@@ -31,10 +38,20 @@ func Migrate(ctx context.Context, d *sql.DB) error {
 		if err != nil {
 			return err
 		}
-		if _, err := d.ExecContext(ctx, string(b)); err != nil {
+		// Apply each migration and its bookkeeping row atomically.
+		tx, err := d.BeginTx(ctx, nil)
+		if err != nil {
 			return err
 		}
-		if _, err := d.ExecContext(ctx, `INSERT INTO schema_migrations(name) VALUES ($1)`, e.Name()); err != nil {
+		if _, err := tx.ExecContext(ctx, string(b)); err != nil {
+			_ = tx.Rollback()
+			return fmt.Errorf("apply migration %s: %w", e.Name(), err)
+		}
+		if _, err := tx.ExecContext(ctx, `INSERT INTO schema_migrations(name) VALUES ($1)`, e.Name()); err != nil {
+			_ = tx.Rollback()
+			return err
+		}
+		if err := tx.Commit(); err != nil {
 			return err
 		}
 	}

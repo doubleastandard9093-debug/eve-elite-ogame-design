@@ -32,7 +32,18 @@ func main() {
 	}
 	addr := ":" + getenv("PORT", "8080")
 	log.Printf("helios backend listening on %s", addr)
-	log.Fatal(http.ListenAndServe(addr, api.NewRouter(api.Config{DB: d, Ships: ships.PGStore{DB: d}, Version: "0.2.0", ServerKey: os.Getenv("SERVER_KEY")})))
+	if os.Getenv("SERVER_KEY") == "" {
+		log.Printf("WARNING: SERVER_KEY is empty; /v1 endpoints are unauthenticated (dev only)")
+	}
+	srv := &http.Server{
+		Addr:              addr,
+		Handler:           api.NewRouter(api.Config{DB: d, Ships: ships.PGStore{DB: d}, Version: "0.2.0", ServerKey: os.Getenv("SERVER_KEY")}),
+		ReadHeaderTimeout: 5 * time.Second,
+		ReadTimeout:       15 * time.Second,
+		WriteTimeout:      15 * time.Second,
+		IdleTimeout:       60 * time.Second,
+	}
+	log.Fatal(srv.ListenAndServe())
 }
 
 func getenv(k, def string) string {

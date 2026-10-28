@@ -5,6 +5,7 @@ import (
 	"context"
 	"crypto/subtle"
 	"encoding/json"
+	"log"
 	"net/http"
 	"time"
 
@@ -31,7 +32,7 @@ func NewRouter(cfg Config) http.Handler {
 	mux.HandleFunc("GET /readyz", func(w http.ResponseWriter, r *http.Request) {
 		ctx, cancel := context.WithTimeout(r.Context(), 2*time.Second)
 		defer cancel()
-		if cfg.DB == nil || cfg.DB.PingContext(ctx) != nil {
+		if cfg.DB == nil || cfg.Ships == nil || cfg.DB.PingContext(ctx) != nil {
 			writeJSON(w, http.StatusServiceUnavailable, map[string]string{"status": "db_unavailable"})
 			return
 		}
@@ -55,6 +56,7 @@ func (cfg Config) auth(h http.HandlerFunc) http.HandlerFunc {
 func (cfg Config) getShip(w http.ResponseWriter, r *http.Request) {
 	s, ok, err := cfg.Ships.Get(r.Context(), r.PathValue("id"))
 	if err != nil {
+		log.Printf("get ship %q: %v", r.PathValue("id"), err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "store"})
 		return
 	}
@@ -77,6 +79,7 @@ func (cfg Config) putShip(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if err := cfg.Ships.Put(r.Context(), s); err != nil {
+		log.Printf("put ship %q: %v", s.PilotID, err)
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "store"})
 		return
 	}
