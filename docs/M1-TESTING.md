@@ -39,19 +39,37 @@ Then press Play and click into a window to capture the mouse. Press Shift+F1 to 
 For lag testing, open the console with `` ` `` in a client and run `NetEmulation.PktLag 150` and `NetEmulation.PktLoss 2`.
 
 ## Controls
-| Action | Keyboard/Mouse | Gamepad |
+| Action | Keyboard/Mouse | Xbox controller |
 |---|---|---|
-| Thrust forward/back | W / S | Left stick Y |
-| Strafe | A / D | Left stick X |
-| Up / down | R / F | D-pad up / down |
+| Thrust forward/back | W / S | Left stick up/down, or RT (forward) / LT (reverse) |
+| Strafe left/right | A / D | Left stick left/right |
+| Up / down | R / F | Hold L3 (click left stick) = up, hold R3 (click right stick) = down |
 | Pitch / yaw | Mouse, or arrow keys | Right stick |
 | Roll | Q / E | LB / RB |
-| Fire laser | LMB or Space | RT |
-| Toggle Flight Assist | Z | Left stick click |
+| Fire laser | LMB or Space | A |
+| Toggle Flight Assist | Z | B |
+| Equalize shields | X | X |
 | Slipstream (spool, engage, drop) | J | Y |
-| Power: Balanced / Attack / Tank / Run | 1 / 2 / 3 / 4 | D-pad left = Balanced, D-pad right = Attack |
-| Equalize shields | X | B |
-| Recenter VR | Home | View/Back |
+| Power: Balanced / Attack / Tank / Run | 1 / 2 / 3 / 4 | D-pad up / right / down / left |
+| Recenter VR | Home | View |
+| Controls overlay (menu placeholder) | Tab | Menu |
+
+**Why this layout:** the triggers and the left stick both drive thrust. When both are used, the one pushed harder wins, so they never fight. Fire is on A so your thumb never has to leave thrust. Vertical thrust is held on the stick clicks, which keeps the whole D-pad free for the four power presets.
+
+**How the inputs feel:**
+- **Right stick and arrow keys are rate inputs.** Holding the stick halfway turns at half the ship's max turn rate.
+- **The mouse is a delta input.** Each mouse count turns the ship by a fixed number of degrees (`MouseDegreesPerCount`, default 0.15), so frame rate doesn't change how far the ship turns. Mouse and stick add together and are capped at the ship's max turn rate. Neither is scaled twice.
+- **Deadzone and curve:** both sticks use a 15% deadzone (radial on the right stick) and a squared response curve for fine aim near the center. The triggers use half that deadzone.
+
+**Settings** (`Config/DefaultGame.ini`, section `[/Script/HeliosDrift.HDPlayerController]`):
+- `StickSensitivity` (0.1–3, default 1)
+- `StickCurveExponent` (1 = linear, default 2)
+- `StickDeadZone` (default 0.15)
+- `bInvertStickPitch`
+- `MouseDegreesPerCount`
+- `bInvertMousePitch`
+
+You can also change sensitivity live from the console (`` ` ``) with `HDStickSensitivity 1.5` and `HDMouseSensitivity 0.1`. Deadzone and curve changes take effect the next time you start PIE.
 
 **HOTAS:** sticks that show up as XInput devices, or that are mapped through Steam Input or the vendor's software, work through the gamepad bindings. Native DirectInput axes need the **RawInput** plugin plus a device config, which is planned for later in M1.
 
@@ -68,4 +86,7 @@ For lag testing, open the console with `` ` `` in a client and run `NetEmulation
 - [ ] **Ship death:** at 0 hull the ship respawns at a Player Start.
 - [ ] **Multiplayer:** each client sees the other ship move smoothly. With `PktLag 150`, your own ship still responds instantly with only small corrections.
 - [ ] **Backend:** with docker running, the log shows `No saved ship for ... (HTTP 404)` on first join. When a client quits, it shows `SaveShip ... -> HTTP 200`. On the next join it shows `Loaded ship`.
-- [ ] VR (optional): VR Preview works, the cockpit camera follows the HMD, and Home recenters.
+- [ ] VR (optional): VR Preview works, the cockpit camera follows the HMD, and Home (or View) recenters.
+- [ ] **Xbox controller:** every action in the table works. Releasing the sticks stops input completely (no drift). The triggers give smooth partial thrust. `HDStickSensitivity 2` makes the right stick turn noticeably faster.
+- [ ] **Mouse at different frame rates:** turning the same mouse distance at `t.MaxFPS 30` and at `t.MaxFPS 144` turns the ship by about the same angle.
+- [ ] **No firing in slipstream:** holding fire while spooling or in slipstream shoots nothing.
