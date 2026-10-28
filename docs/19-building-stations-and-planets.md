@@ -65,7 +65,8 @@ Orbital batteries can't cover a platform inside an atmosphere, and the platform 
 An attacker descending from orbit fights the boundary layer, then weather, then the picket, while the interceptor cage climbs past to hit their exit vectors. A gas-giant assault is the inverse of a station assault.
 
 ### Safe refueling
-- **Jump fuel is the projection limiter:** how far a ship can operate is bounded by the jump fuel it carries, and gas-giant fuel stations are where that fuel is refilled. How much fuel a station supplies follows its giant's cloud density tier, so its reach changes with the weekly re-roll. Jump ranges and fuel per jump are in doc 13. So a defended station extends every friendly ship's operational radius by its full jump range.
+- **Jump fuel is the projection limiter for capitals.** Only capital-size ships jump on their own drives (doc 13); everything smaller goes through gates. A capital's reach is bounded by the jump fuel it carries, and gas-giant fuel stations are where it refills. A defended station extends every friendly capital's operational radius by its full jump range. How much fuel a station supplies follows its giant's cloud density tier, so that reach changes with the weekly re-roll.
+- **Local fuel for small ships:** small ships refuel here for in-system flight. They don't need jump fuel, since gates carry them between systems.
 - Access: **open** (toll), **standing-gated**, or **company-only**. An open station in dangerous space is a public good and an obvious target, the most contested structure type.
-- **Refueling is a real stop:** docking means a stationary window. Under threat you choose full tank, half, or leave dry and jump short.
+- **Refueling is a real stop:** docking means a stationary window. Under threat you choose full tank, half, or leave dry and (for a capital) jump short.
 - **Counter to lane interdiction:** a ship pulled from a corridor can run for a defended giant and use it as a hard point while its drive charges.

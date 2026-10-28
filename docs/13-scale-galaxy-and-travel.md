@@ -31,25 +31,30 @@ Defend self, mine and hold can run while orbiting or stationary.
 5. **Wormholes / jump gates / stellar anomalies**: long jumps, such as to another system. Odd distortions that throw a ship a long way, often to another system, sometimes at random. Not to be confused with encounter anomalies (doc 20).
 6. **Galactic gates** (incomplete / ancient ruins): will eventually jump to other galaxies.
 
-## Jump drives: range, fuel and drive strain (first pass)
-Ships carry their own jump drive for system-to-system travel off the gate network. Every number here is first pass. Light ships are long-range explorers; big ships make short, fuel-heavy jumps and are rate-limited.
+## Interstellar travel: gates for small ships, drives for capitals (first pass)
+**Who needs gates.** Ships from fighters through battleships have **no independent interstellar jump drive**. To leave a system they use **jump gates, instanced jump lanes, wormholes or stellar anomalies**. Inside a system they still use sub-space, slipstream and trade lanes as normal.
+- Battleships sit in the gated group by default. **This is a choice Aaron can flip**, for example by giving battleships a short-range drive.
 
-| Class | Base range | Max (skills/fit) | Fuel |
+**Capital-size ships jump on their own drives.** That covers capitals, supercapitals, jump freighters and capital industrials.
+
+| Class | Base range | Max (skills) | Fuel |
 |---|---|---|---|
-| Light (fighters, corvettes, frigates, scouts) | 12 ly | 40 ly | Curve: f = k × (d × m / m_opt)^p, p = 2.0 |
-| Medium (destroyers, cruisers, haulers, miners) | 10 ly | 30 ly | Same curve, p = 2.3 |
-| Large (battlecruisers, battleships) | 4 ly | 8 ly | 7 t per ly |
-| Capital (carriers, dreadnoughts, capital industrials) | 3.5 ly | 7 ly | 30 t per ly |
+| Capital (carriers, dreadnoughts) | 3.5 ly | 7 ly | 30 t per ly |
 | Supercapital (flagship-class capitals) | 3 ly | 6 ly | 30 t per ly |
-| Jump freighter / capital industrial hauler | 5 ly | 10 ly | 90 t per ly |
+| Jump freighter / capital industrial | 5 ly | 10 ly | 90 t per ly |
 
-- **Light and medium fuel curve.** Fuel per jump rises faster than distance: k is set by drive grade (about 8–12, ×10⁻³ for tonnes), m is the ship's current mass including cargo and fuel, m_opt is the drive's rated mass, and p grows with drive size. Short hops are cheap; a max-range jump drains the tank. A full hold shortens your reach, which ties into the live-mass flight model (doc 02).
-- **Large and capital fuel** is linear per light-year. Skills can cut it by up to 50%.
+- **Fuel** is linear per light-year. Skills cut it by up to 50%.
 - **Range skill:** +20% range per level, five levels, which doubles base range.
-- **Drive strain (large ships and up).** Each jump adds strain: at least 10 × (1 + ly) minutes, or existing strain × (1 + ly), whichever is higher, capped at **5 hours**. Strain decays in real time.
+- **Drive strain.** Each jump adds strain: at least 10 × (1 + ly) minutes, or existing strain × (1 + ly), whichever is higher, capped at **5 hours**. Strain decays in real time.
   - **Spool-down:** after a jump the drive can't fire again for 1/10 of the strain before the jump, at least (1 + ly) minutes, capped at **30 minutes**.
-  - Haulers, jump freighters and capital industrials count only 10% of the distance for strain.
-  - Net effect: a capital can jump out and back quickly once, but a second long jump strands it for a while. Defended gas-giant stations (doc 19) set where fleets can reach.
+  - Jump freighters and capital industrials count only 10% of the distance for strain.
+  - Net effect: a capital can jump out and back quickly once, but a second long jump strands it for a while.
+- **Capitals and gates (proposed, needs Aaron's call):** capitals are **too large for standard gates**. A few **large gates** (rare, high-value, usually on major routes or player-built) let them through. So a capital chooses between a fuel-and-strain jump and a detour to a large gate, and large gates become strategic sites.
+
+### Ripple effects
+- **Gates are chokepoints** for all small-ship traffic between systems. That raises the value of gate control, gate and lane tolls, and interdiction near gates and lanes (doc 15).
+- **Gas-giant fuel stations** matter mainly for **capital projection** and for local fuel. Small ships burn fuel in-system (sub-space, slipstream); a gate trip costs them no jump fuel.
+- **Exploration.** Small explorers can only go where gates, jump lanes, wormholes and anomalies lead. **Open question:** should the Frontier beyond the gate network be reachable by small ships only through wormholes? That would make scanning down wormholes the explorer's core skill.
 
 ## Lanes are owned corridors
 Lanes are infrastructure, not scenery. Each lane has:

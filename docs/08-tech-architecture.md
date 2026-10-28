@@ -10,7 +10,7 @@
 - Turn on **Large World Coordinates** (double precision) so star systems fit in one level.
 - **Floating origin rebasing** per client keeps rendering precise. The server simulates in double precision.
 - **World Partition** streams station interiors, asteroid fields, and planets as data layers. Planets are procedural or tiled meshes with impostors at a distance.
-- Lattice jumps between systems trigger a **server travel/handoff** with a loading tunnel.
+- Gate jumps (and capital self-jumps) between systems trigger a **server travel/handoff** with a loading tunnel.
 
 ## Networking
 - **Dedicated servers** (Linux), with one or more per star system. A **Zone Director** service gives systems their own servers and spins up servers for busy systems.

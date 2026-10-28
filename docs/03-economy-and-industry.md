@@ -7,6 +7,7 @@
 - **Faucets:** NPC bounties, exploration data, and mining.
 - **NPC role:** kept small. NPCs seed basic blueprints and a buy floor for raw materials so new players aren't stuck. **NPCs never sell finished ships:** they sell ore, buy components, and sell only bare baseline hulls priced as a soft floor (doc 14). Everything else is player-made.
 - **Lanes move prices:** cutting a lane reroutes trade through gates 4–5x slower, and downstream prices move within the hour (doc 13).
+- **Gates shape trade:** small-ship cargo between systems must go through gates, so gate routes and tolls set prices. Jump freighters skip gates but pay in fuel and drive strain (doc 13).
 - **Hull sources:** player shipyards, bare NPC baseline hulls, and salvage rebuilds at ~30% of new-build cost (doc 16).
 - **Flagged goods:** cheap stolen cargo from pirate markets carries a legal mark in lawful space (doc 18).
 - See also mining (doc 16 §7A) and building/decay (doc 19 §7D).

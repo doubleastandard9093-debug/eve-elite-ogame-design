@@ -15,7 +15,7 @@ Hostility between companies depends on where you are, not who you are.
 
 Underfunded claims show an **"undefended"** flag, so defending is a logistics problem, not a twitch problem.
 
-**Lane interdiction replaces the gank.** Interdictors pull ships out of a lane, but only in claimed volumes or Frontier. They cost a module charge and show on lane telemetry, and the lane owner can buy **suppression** as counterplay.
+**Lane interdiction replaces the gank.** Interdictors pull ships out of a lane, but only in claimed volumes or Frontier. Because small ships must use gates between systems, gates and the lanes leading to them are natural chokepoints. They cost a module charge and show on lane telemetry, and the lane owner can buy **suppression** as counterplay.
 
 ## §7 Defense is a spending rate, not a garrison
 A claim's **Defense Budget (DB)** is computed from two slow inputs:

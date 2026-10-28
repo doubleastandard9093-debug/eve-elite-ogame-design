@@ -15,7 +15,7 @@ This doc names the source games only so we can analyze them. Nullpoint's game co
 Star Trek Online and Star Wars: The Old Republic remain earlier inspirations for crew and story.
 
 ## Reference values: landing and jump drives
-Aaron asked Nullpoint's landing ratios and jump distances to be modeled on these. Nullpoint's own values are in docs 13 and 17.
+Aaron asked Nullpoint's landing ratios and jump distances to be modeled on these. Nullpoint's own values are in docs 13 and 17. Note: Nullpoint uses the jump-drive reference only for capital-size ships. Small ships cross systems by gate, so the Elite jump-range rows are kept for context only.
 
 | Game | Mechanic | Reference value | Source |
 |---|---|---|---|

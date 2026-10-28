@@ -3,6 +3,7 @@
 - **Travel tiers:** see the full travel-speed ladder in doc 13 (Sub Space, Slipstream, instance jump lanes, trade lanes, gates/wormholes/anomalies, galactic gates).
 - **Hulls:** fighters up to capitals, plus a mining line. Supply tiers and visible modules are in doc 14. Capital ships are planned for after the MVP. Each hull has hardpoints, utility slots, and internal slots.
 - **Combat:** shots travel as projectiles, and some weapons fire hitscan beams. Ships have subsystems you can target (drives, power plant, cargo). Heat management matters.
+- **Between systems:** fighters through battleships must use jump gates, jump lanes, wormholes or anomalies; only capital-size ships jump on their own drives (doc 13).
 - **Interdiction:** pulls ships out of a lane, only in claimed volumes or Frontier (doc 15).
 - **Fleets:** you can captain a ship while AI escorts and wingmates follow your commands. Large battles use the server load tactics described in doc 08.
 
