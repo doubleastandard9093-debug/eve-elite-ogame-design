@@ -33,7 +33,7 @@ Defend self, mine and hold can run while orbiting or stationary.
 
 ## Interstellar travel: gates for small ships, drives for capitals (first pass)
 **Who needs gates.** Ships from fighters through battleships have **no independent interstellar jump drive**. To leave a system they use **jump gates, instanced jump lanes, wormholes or stellar anomalies**. Inside a system they still use sub-space, slipstream and trade lanes as normal.
-- Battleships sit in the gated group. (Default in place; Aaron hasn't objected, but he hasn't explicitly confirmed it either.)
+- Battleships sit in the gated group (confirmed by Aaron 2026-10-28).
 
 **Capital-size ships jump on their own drives.** That covers capitals, supercapitals, jump freighters and capital industrials.
 
