@@ -6,4 +6,5 @@
 - **Logistics:** territory gives Syndicates jump bridges and staging stations, and they pay upkeep in resources.
 
 - **Claim defense:** a claim is defended by a Defense Budget from output and residency, not a garrison (doc 15 §7).
+- **Frontier claims beyond the gate network:** small ships can only get there through wormholes, and capitals by self-jump. Holding a Frontier claim means keeping wormhole routes charted and defended, plus fuel for capital jumps (docs 13, 19).
 - **Lanes:** players build and toll lanes where the NPC network doesn't reach (doc 13).

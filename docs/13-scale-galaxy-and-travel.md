@@ -33,7 +33,7 @@ Defend self, mine and hold can run while orbiting or stationary.
 
 ## Interstellar travel: gates for small ships, drives for capitals (first pass)
 **Who needs gates.** Ships from fighters through battleships have **no independent interstellar jump drive**. To leave a system they use **jump gates, instanced jump lanes, wormholes or stellar anomalies**. Inside a system they still use sub-space, slipstream and trade lanes as normal.
-- Battleships sit in the gated group by default. **This is a choice Aaron can flip**, for example by giving battleships a short-range drive.
+- Battleships sit in the gated group. (Default in place; Aaron hasn't objected, but he hasn't explicitly confirmed it either.)
 
 **Capital-size ships jump on their own drives.** That covers capitals, supercapitals, jump freighters and capital industrials.
 
@@ -49,12 +49,13 @@ Defend self, mine and hold can run while orbiting or stationary.
   - **Spool-down:** after a jump the drive can't fire again for 1/10 of the strain before the jump, at least (1 + ly) minutes, capped at **30 minutes**.
   - Jump freighters and capital industrials count only 10% of the distance for strain.
   - Net effect: a capital can jump out and back quickly once, but a second long jump strands it for a while.
-- **Capitals and gates (proposed, needs Aaron's call):** capitals are **too large for standard gates**. A few **large gates** (rare, high-value, usually on major routes or player-built) let them through. So a capital chooses between a fuel-and-strain jump and a detour to a large gate, and large gates become strategic sites.
+- **Capitals and gates (default in place; not explicitly confirmed):** capitals are **too large for standard gates**. A few **large gates** (rare, high-value, usually on major routes or player-built) let them through. So a capital chooses between a fuel-and-strain jump and a detour to a large gate, and large gates become strategic sites.
 
 ### Ripple effects
 - **Gates are chokepoints** for all small-ship traffic between systems. That raises the value of gate control, gate and lane tolls, and interdiction near gates and lanes (doc 15).
 - **Gas-giant fuel stations** matter mainly for **capital projection** and for local fuel. Small ships burn fuel in-system (sub-space, slipstream); a gate trip costs them no jump fuel.
-- **Exploration.** Small explorers can only go where gates, jump lanes, wormholes and anomalies lead. **Open question:** should the Frontier beyond the gate network be reachable by small ships only through wormholes? That would make scanning down wormholes the explorer's core skill.
+- **Exploration (decided 2026-10-28):** small ships (fighters through battleships) reach Frontier space beyond the gate network **only through wormholes**. **Scanning down wormholes is the explorer's core skill.** Explorers find and chart the routes everyone else's small ships depend on.
+- **Frontier logistics depend on both.** Capitals self-jump into The Black, but every small hull (haulers, miners, escorts, salvagers) arrives through a wormhole. A Frontier supply chain needs jump freighters and capitals for bulk and projection, and live wormhole routes for everything else. Losing a wormhole route strands small ships on one side.
 
 ## Lanes are owned corridors
 Lanes are infrastructure, not scenery. Each lane has:

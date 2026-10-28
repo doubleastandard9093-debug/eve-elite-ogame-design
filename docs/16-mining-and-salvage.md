@@ -13,6 +13,7 @@ Four deposit types, each a different flying problem:
 - Ore is **finite per rock**. Belt respawn scales to **regional consumption**, not the system's, so a heavily mined region feels mined out.
 - Mining hulls are their own line (doc 14).
 - **Industrial command ships** boost the fleet's rate, not their own, so mining is social.
+- **Frontier beyond the gate network:** small mining and salvage hulls get there only through wormholes. Ore and salvage come out by wormhole in small hulls or by jump freighter.
 - Large asteroids can be landed on and built on (doc 17, doc 19).
 
 ## §7B Salvage
