@@ -49,7 +49,7 @@ Defend self, mine and hold can run while orbiting or stationary.
   - **Spool-down:** after a jump the drive can't fire again for 1/10 of the strain before the jump, at least (1 + ly) minutes, capped at **30 minutes**.
   - Jump freighters and capital industrials count only 10% of the distance for strain.
   - Net effect: a capital can jump out and back quickly once, but a second long jump strands it for a while.
-- **Capitals and gates (default in place; not explicitly confirmed):** capitals are **too large for standard gates**. A few **large gates** (rare, high-value, usually on major routes or player-built) let them through. So a capital chooses between a fuel-and-strain jump and a detour to a large gate, and large gates become strategic sites.
+- **Capitals and gates (confirmed by Aaron 2026-10-28):** capitals are **too large for standard gates**. A few **large gates** (rare, high-value, usually on major routes or player-built) let them through. So a capital chooses between a fuel-and-strain jump and a detour to a large gate, and large gates become strategic sites.
 
 ### Ripple effects
 - **Gates are chokepoints** for all small-ship traffic between systems. That raises the value of gate control, gate and lane tolls, and interdiction near gates and lanes (doc 15).
