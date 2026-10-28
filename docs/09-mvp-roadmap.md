@@ -22,7 +22,7 @@ LZ landing with Administered corridors and one free-descent world (§7C), Holo-C
 One origin arc (first 2 hours), 2 companions with affinity and a first-chapter personal arc, choice flags stored in the backend, one away-mission instance, the boarding prototype, one planetoid interior (worked mine) with personnel loot (§7C.5), and rogues and pirates with economic spawn pressure (§7E).
 
 ## M4 — Multi-System & Syndicates (8–10 wks)
-3–5 systems on separate servers with jump handoff, Syndicates with a shared hangar, jump gates, one player-built lane with toll, one Null claim with the §7 Defense Budget, escrowed contracts and the 40% salvage valve, lane interdiction, Open/Corp hulk flags, and one gas-giant fuel station (§7D.1b).
+3–5 systems on separate servers with jump handoff, Syndicates with a shared hangar, jump gates, one player-built lane with toll, one Frontier claim with the §7 Defense Budget, escrowed contracts and the 40% salvage valve, lane interdiction, Open/Corp hulk flags, and one gas-giant fuel station (§7D.1b).
 
 ## MVP exit criteria
 About 200 concurrent players in a closed alpha. The full loop works: mine → build → fly → lose → rebuild. Timers survive server restarts, with no duplicated items.

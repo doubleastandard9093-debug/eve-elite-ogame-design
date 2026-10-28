@@ -53,4 +53,6 @@ Paid four ways:
 3. Longer decay window, instead of a short stability clock.
 4. If you own the wreck's claim volume, a **salvage-rights toll** on other entrants' yield.
 
+**Class 3–4 sites in Secured space.** They still spawn in Secured space. There, breaching under the Open/salvage PVP flag is an opt-in exception to Secured's no-hostility rule, like the duel flag. Choosing not to flag is allowed but gives reduced rewards.
+
 **Solo must never be a trap.** It gets a shorter clock but a guaranteed room. No NPC spawn scales with another player's presence, and nothing inside is designed to make a solo run unwinnable.

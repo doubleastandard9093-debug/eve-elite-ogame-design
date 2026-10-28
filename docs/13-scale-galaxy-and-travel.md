@@ -34,6 +34,6 @@ Defend self, mine and hold can run while orbiting or stationary.
 ## Lanes are owned corridors
 Lanes are infrastructure, not scenery. Each lane has:
 - **Alignment**, **integrity**, **signature damping** and a **toll**.
-- **Owner.** NPCs own the core High Sec network and it is free. Players only build lanes where the NPC network doesn't reach. That prevents a player monopoly on basic travel.
-- **Economic weight.** Cut a High Sec lane between two industrial hubs and downstream prices move within the hour, because the gate route is 4–5x slower.
-- **Interdiction** can pull ships out of a lane, only in claimed volumes or Null (doc 15).
+- **Owner.** NPCs own the core Secured network and it is free. Players only build lanes where the NPC network doesn't reach. That prevents a player monopoly on basic travel.
+- **Economic weight.** Cut a Secured lane between two industrial hubs and downstream prices move within the hour, because the gate route is 4–5x slower.
+- **Interdiction** can pull ships out of a lane, only in claimed volumes or Frontier (doc 15).

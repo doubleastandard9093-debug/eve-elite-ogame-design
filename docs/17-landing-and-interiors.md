@@ -2,7 +2,7 @@
 Source: Aaron's design update, 2026-10-27.
 
 ## §7C Landing tiers
-Fully simulating 1:1 atmospheric planets would break the scale rules, so landing has four tiers:
+Fully simulating 1:1 atmospheric planets would break the game's scale (TODO: write the scale-rules section), so landing has four tiers:
 | Body | Landing |
 |---|---|
 | **Gas giants** | Orbital only (fuel scooping, doc 19 §7D.1b). |
@@ -17,7 +17,7 @@ Fully simulating 1:1 atmospheric planets would break the scale rules, so landing
 |---|---|
 | **Undeveloped** | Land anywhere, open sky. |
 | **Administered** (LZ or settlement) | Rotating corridors on a published cycle, inbound and outbound separated. You have to know the window. |
-| **Hardened** (player-built planetoid defense, or a High Sec core world) | Single entry point, gated and monitored, with coverage on every other vector. |
+| **Hardened** (player-built planetoid defense, or a Secured core world) | Single entry point, gated and monitored, with coverage on every other vector. |
 
 Developing a planetoid brings industry, residency and a bigger Defense Budget, and costs you the open sky. Keep a world undeveloped and not worth taking, or build it into something valuable that can only be approached through a kill zone.
 

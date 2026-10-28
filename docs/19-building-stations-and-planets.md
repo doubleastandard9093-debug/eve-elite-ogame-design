@@ -62,7 +62,7 @@ Orbital batteries can't cover a platform inside an atmosphere, and the platform 
 An attacker descending from orbit fights the boundary layer, then weather, then the picket, while the interceptor cage climbs past to hit their exit vectors. A gas-giant assault is the inverse of a station assault.
 
 ### Safe refueling
-- Jump fuel is the projection limiter, so a defended station extends every friendly ship's operational radius by its full jump range.
+- Jump fuel is the projection limiter (TODO: write the projection-limiter section this refers to), so a defended station extends every friendly ship's operational radius by its full jump range.
 - Access: **open** (toll), **standing-gated**, or **company-only**. An open station in dangerous space is a public good and an obvious target, the most contested structure type.
 - **Refueling is a real stop:** docking means a stationary window. Under threat you choose full tank, half, or leave dry and jump short.
 - **Counter to lane interdiction:** a ship pulled from a corridor can run for a defended giant and use it as a hard point while its drive charges.
