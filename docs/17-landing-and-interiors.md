@@ -2,15 +2,24 @@
 Source: Aaron's design update, 2026-10-27.
 
 ## §7C Landing tiers
-Fully simulating 1:1 atmospheric planets would break the scale rules (TODO: the brief still doesn't define the scale rules; only the galaxy scale in doc 13), so landing has four tiers:
+### Seamless descent (2026-10-28 decision)
+Landing is **seamless, onto full-size bodies, with no loading screen**. A pilot comes in on **orbital cruise**, drops into a **glide** through the upper approach, then takes over for **surface flight** down to the ground. The same ship, the same session, one continuous flight from orbit to touchdown and back.
+
+**What "scale rules" meant.** The earlier brief said full 1:1 atmospheric planets would "break the scale rules". That referred to engine limits, not a game rule: rendering, streaming and simulating full-size planets costs a lot of performance, and positions far from the origin need UE5 Large World Coordinates (LWC) to stay precise. Seamless descent needs streamed terrain and LWC-safe coordinates on every landable body. That is a tech cost to budget for (doc 08), not a reason to avoid it.
+
+### How the tiers fit together
+- **Seamless descent is the default** for landable airless bodies (moons, rocks, large asteroids) and authored atmospheric worlds, with drag, entry heat, gravity and terrain collision where there is an atmosphere.
+- **Developed worlds** are still governed by landing zones and corridors (§7C.2a below): the descent is seamless, but where you may come down is controlled.
+- **Gas giants stay orbital-only.**
+
 | Body | Landing |
 |---|---|
 | **Gas giants** | Orbital only (fuel scooping, doc 19 §7D.1b). |
-| **Most settled worlds** | A landing zone (LZ) you fly a corridor into. |
-| **A minority of authored worlds** | Genuine free descent with drag, entry heat, gravity and terrain collision. |
-| **Large asteroids** | Same as free descent, minus atmosphere. |
+| **Developed / settled worlds** | Seamless descent, but into a landing zone (LZ) through a corridor. |
+| **Authored atmospheric worlds** | Seamless free descent with drag, entry heat, gravity and terrain collision. |
+| **Airless bodies and large asteroids** | Seamless free descent, minus atmosphere. |
 
-**Draft: LZs on about 20% of inhabited worlds. OPEN QUESTION.** If LZs are everywhere, planets stop mattering; if they're rare, they become campable chokepoints.
+**Draft: LZs on about 20% of inhabited worlds. STILL OPEN.** If LZs are everywhere, planets stop mattering; if they're rare, they become campable chokepoints.
 
 ## §7C.2a Landing corridors: development decides the entry
 | State | Entry |

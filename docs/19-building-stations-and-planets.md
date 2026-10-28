@@ -44,11 +44,14 @@ The one body type outside the planetoid model.
 - Enter the column on a descent profile and fill tanks from the gas.
 - Entry angle, altitude band, thermal load and time-on-station all matter. Greed on tank volume risks heat damage.
 - Thin upper atmosphere is slow and cool; deep is fast and hot. A bigger scoop module fills faster and runs hotter.
-- A rich calm giant is a strategic asset; a rich violent one is a high-skill site; a poor calm one is where you learn.
+- **Cloud density tiers.** Each gas giant has a cloud density tier: **Rare**, **Consistent** or **Abundant**. The tier sets scoop yield and fuel-station yield.
+- **Weekly re-roll.** Each planet re-rolls its tier at random once a week (weekly respawn). Exact odds per tier are not set yet.
+- Density and weather combine: an Abundant calm giant is a strategic asset, an Abundant violent one is a high-skill site, and a Rare calm one is where you learn.
 
 ### Fuel mining station
 - Anchored in the **upper atmosphere** (there is no surface).
-- Produces continuously at a rate set by column richness and scoop quality.
+- Produces continuously at a rate set by the giant's current cloud density tier and scoop quality.
+- **A station's value shifts week to week** as its giant re-rolls. An Abundant week makes it a prize, and a Rare week makes it a cost center.
 - Consumes power, spare intakes (they wear out in storms), and ballast and tether upkeep.
 
 ### Gas-giant defense: anchored, five layers
@@ -62,7 +65,7 @@ Orbital batteries can't cover a platform inside an atmosphere, and the platform 
 An attacker descending from orbit fights the boundary layer, then weather, then the picket, while the interceptor cage climbs past to hit their exit vectors. A gas-giant assault is the inverse of a station assault.
 
 ### Safe refueling
-- **Jump fuel is the projection limiter:** how far a ship can operate is bounded by its jump fuel. (TODO: jump range and fuel-per-jump numbers are not defined yet.) So a defended station extends every friendly ship's operational radius by its full jump range.
+- **Jump fuel is the projection limiter:** how far a ship can operate is bounded by the jump fuel it carries, and gas-giant fuel stations are where that fuel is refilled. How much fuel a station supplies follows its giant's cloud density tier, so its reach changes with the weekly re-roll. (TODO: jump range and fuel-per-jump numbers.) So a defended station extends every friendly ship's operational radius by its full jump range.
 - Access: **open** (toll), **standing-gated**, or **company-only**. An open station in dangerous space is a public good and an obvious target, the most contested structure type.
 - **Refueling is a real stop:** docking means a stationary window. Under threat you choose full tank, half, or leave dry and jump short.
 - **Counter to lane interdiction:** a ship pulled from a corridor can run for a defended giant and use it as a hard point while its drive charges.
